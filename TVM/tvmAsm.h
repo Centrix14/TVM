@@ -1,0 +1,49 @@
+#ifndef TVMASM_H_INCLUDED
+#define TVMASM_H_INCLUDED
+
+/*
+tvmAsm.h v0.2
+Заголовочный файл ассемблера TVM / TVM assembler header file
+06.03.2019
+by Centrix
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include "tvmlib.h"
+#include "ncpgen.h"
+
+int memIndx = 0; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is 
+performed */
+
+#define $CRG {memory[memIndx++] = CRG;}
+#define $CRC {memory[memIndx++] = CRC;}
+#define $PRG {memory[memIndx++] = PRG;}
+#define $PRC {memory[memIndx++] = PRC;}
+#define $CRGI {memory[memIndx++] = CRG;} {memory[memIndx++] = STDI;} memory[memIndx++] = 
+#define $CRCI {memory[memIndx++] = CRC;} {memory[memIndx++] = STDI;} memory[memIndx++] = 
+#define $PRCI {memory[memIndx++] = PRC;} {memory[memIndx++] = STDI;} memory[memIndx++] = 
+#define $PRGI {memory[memIndx++] = PRG;} {memory[memIndx++] = STDI;} memory[memIndx++] = 
+#define $CRGA {memory[memIndx++] = CRG;} {memory[memIndx++] = STDA;} memory[memIndx++] = 
+#define $CRCA {memory[memIndx++] = CRC;} {memory[memIndx++] = STDA;} memory[memIndx++] = 
+#define $PRGA {memory[memIndx++] = PRG;} {memory[memIndx++] = STDA;} memory[memIndx++] = 
+#define $PRCA {memory[memIndx++] = PRC;} {memory[memIndx++] = STDA;} memory[memIndx++] = 
+#define $JUMP {memory[memIndx++] = GJP;} memory[memIndx++] = 
+#define $COM {memory[memIndx++] = COM;} memory[memIndx++] = 
+#define $SMEM(x, value) {memory[x] = value;}
+#define $GMEM(x) {memory[x];} 
+#define $GREG(x, y) reg[x][y] 
+
+#define _$STDI {memory[memIndx++] = STDI;}
+#define _$DATA memory[memIndx++] =
+#define _$COND memory[memIndx++] = 
+
+#define _MAIN {memory[memIndx++] = MAIN;}
+#define _POINT {memory[memIndx++] = JPT;} memory[memIndx++] = 
+#define _EB {memIndx++;}
+#define _END {memory[memIndx] = end;}
+#define _RUN {memInter();}
+#define _toNCP(name) {strcpy(filename, name);} {ncpGen();}
+#define _DEB {memory[memIndx++] = DEB;}
+
+#endif // TVMASM_H_INCLUDED
