@@ -21,6 +21,10 @@ unsigned short int nil = 0; /* Ноль или отсутствие чего - либо / Zero or the abs
 int jump(int num); /* Позволяет использовать $JUMP / Allows you to use $JUMP */
 int gotoMain(); /* Переходит к точке начала программы / Comes to the starting point of the program */
 void memInter(); /* Интерпретатор / Interpreter */
+void detcoor(int rtype); /* Определение адреса регистра с изменением indxX & indxY / Definition 
+						register address change indxX & indxY*/
+void detcoorv(int rtype, int* x, int* y); /* Определение адреса регистра / The definition of the address register */
+void clear(int endpoint); /* Очищение памяти / Memory cleaning */
 
 enum commands { /* Список комманд / List of commands */
 	CRG = 1, /* Change ReGister - Выбрать регистр [1] */
@@ -32,19 +36,19 @@ enum commands { /* Список комманд / List of commands */
 	DEB, /* DEBug выводит номер читаемой ячейки [7] */
 	MAIN, /* Точка начала исполнения программы / The start point of program execution [8] */
 	COM, /* Использование комманды / Using the command [9] */
-	PUT, /* Простейший вывод */
-	RESTART, /* Начало исполнения программы заново */
-	QUIT, /* Завершение работы программы */
-	CLEAR /* Очищение определённых ячеек памяти */
+	PUT, /* Простейший вывод / The simplest conclusion [10] */
+	RESTART, /* Начало исполнения программы заново / Start of program execution again [11] */
+	QUIT, /* Завершение работы программы / The completion of the program [12] */
+	CLEAR /* Очищение определённых ячеек памяти / Clearing specific memory locations [13] */
 };
 
 enum flags { /* Список флагов / List of flags */
 	STDI = 1, /* Стандартный флаг / Standard flag */
-	STDA,
-	ALL
+	STDA, /* Адресный флаг / Address flag */
+	ALL /* Флаг для _CLEAR / The _CLEAR flag for */
 };
 
-enum Regs /* Список всех регистров */
+enum Regs /* Список всех регистров / List of all registers */
 {
 	R10 = 10,
 	R11,

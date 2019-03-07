@@ -1,0 +1,15 @@
+-- by Centrix 07.03.2019 for v0.3
+
+New address mode including:
+	1. STDA address flag
+	2. Abbreviated commands for TA0 (CRC, CRC, PRG, PRC)
+	3. Changed names:
+	   CRCS -> CRCI
+	   CRGS -> CRGI
+	   PRGS -> PRGI
+           PRCS -> PRGI
+
+New commands:
+	_RESTART - for goto programm start
+	_QUIT - the completion of the program
+	_CLEAR - to change program code
