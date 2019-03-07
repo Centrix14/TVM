@@ -2,9 +2,9 @@
 #define TVMASM_H_INCLUDED
 
 /*
-tvmAsm.h v0.2
+tvmAsm.h v0.3
 Заголовочный файл ассемблера TVM / TVM assembler header file
-06.03.2019
+07.03.2019
 by Centrix
 */
 
@@ -15,7 +15,6 @@ by Centrix
 
 int memIndx = 0; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is 
 performed */
-int iotype = 0;
 
 #define $CRG {memory[memIndx++] = CRG;}
 #define $CRC {memory[memIndx++] = CRC;}
@@ -35,19 +34,20 @@ int iotype = 0;
 #define $GMEM(x) {memory[x];} 
 #define $GREG(x, y) reg[x][y] 
 
-#define $PUT(msg) if (iotype == 1) {fprintf(stdout, msg);}
-
 #define _$STDI {memory[memIndx++] = STDI;}
 #define _$DATA memory[memIndx++] =
 #define _$COND memory[memIndx++] = 
 
+#define _RESTART {memory[memIndx++] = RESTART;}
+#define _QUIT {memory[memIndx++] = QUIT;}
+#define _CLEAR {memory[memIndx++] = CLEAR;} memory[memIndx++] = 
 #define _MAIN {memory[memIndx++] = MAIN;}
 #define _POINT {memory[memIndx++] = JPT;} memory[memIndx++] = 
 #define _EB {memIndx++;}
 #define _END {memory[memIndx] = end;}
 #define _RUN {memInter();}
 #define _toNCP(name) {strcpy(filename, name);} {ncpGen();}
+#define _COM(name) _RUN _toNCP(name)
 #define _DEB {memory[memIndx++] = DEB;}
-#define _IO iotype = 
 
 #endif // TVMASM_H_INCLUDED

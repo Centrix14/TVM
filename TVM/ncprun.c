@@ -4,9 +4,9 @@
 #include "tvmlib.h"
 
 /*
-ncprun.c v0.1
+ncprun.c v0.3
 Программа запуска ncp файлов / NCP file launcher
-03.03.2019
+07.03.2019
 by Centrix
 */
 

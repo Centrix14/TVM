@@ -2,9 +2,9 @@
 #define NCPGEN_H_INCLUDED
 
 /*
-ncpgen.h v0.1
+ncpgen.h v0.3
 Библиотека для создания ncp файлов / Library for creating ncp files
-03.03.2019
+07.03.2019
 by Centrix
 */
 
@@ -62,6 +62,15 @@ void ncpGen() {
 			}
 			else if (memory[i] == PUT) {
 				fprintf(code, "%d %d ", PUT, memory[i + 1]);
+			}
+			else if (memory[i] == RESTART) {
+				fprintf(code, "%d %d ", RESTART, memory[i + 1]);
+			}
+			else if (memory[i] == QUIT) {
+				fprintf(code, "%d ", QUIT);
+			}
+			else if (memory[i] == CLEAR) {
+				fprintf(code, "%d %d ", CLEAR, memory[cell + 1]);
 			}
 			i++;
 		}

@@ -2,9 +2,9 @@
 #define TVMLIB_H_INCLUDED
 
 /*
-tvmlib.h v0.2
+tvmlib.h v0.3
 Основная библиотека TVM / Basic TVM library
-06.03.2019
+07.03.2019
 by Centrix
 */
 
@@ -32,12 +32,16 @@ enum commands { /* Список комманд / List of commands */
 	DEB, /* DEBug выводит номер читаемой ячейки [7] */
 	MAIN, /* Точка начала исполнения программы / The start point of program execution [8] */
 	COM, /* Использование комманды / Using the command [9] */
-	PUT
+	PUT, /* Простейший вывод */
+	RESTART, /* Начало исполнения программы заново */
+	QUIT, /* Завершение работы программы */
+	CLEAR /* Очищение определённых ячеек памяти */
 };
 
 enum flags { /* Список флагов / List of flags */
 	STDI = 1, /* Стандартный флаг / Standard flag */
-	STDA
+	STDA,
+	ALL
 };
 
 enum Regs /* Список всех регистров */
@@ -145,9 +149,18 @@ void detcoorv(int rtype, int* x, int* y) {
 	*y = rtype % 10;
 }
 
+void clear(int endpoint) {
+	int i = 0;
+	while (i != endpoint) {
+		memory[i] = nil;
+	}
+}
+
 void memInter() {
-	cell = gotoMain();
 	while (cell != end) {
+		if (cell == 0) {
+			cell = gotoMain();
+		}
 		if (memory[cell] == CRG && memory[cell + 1] == STDI) {
 			indxX = memory[cell + 2];
 			cell++;
@@ -185,6 +198,21 @@ void memInter() {
 		}
 		else if (memory[cell] == DEB) {
 			printf("%d\n", cell);
+		}
+		else if (memory[cell] == RESTART) {
+			cell = 0;
+		}
+		else if (memory[cell] == QUIT) {
+			memory[cell] = end;
+			cell--;
+		}
+		else if (memory[cell] == CLEAR) {
+			if (memory[cell + 1] == ALL) {
+				clear(memory[cell]);
+			}
+			else {
+				memory[memory[cell + 1]] = nil;
+			}
 		}
 		cell++;
 	}
