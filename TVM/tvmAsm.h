@@ -15,6 +15,7 @@ by Centrix
 
 int memIndx = 0; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is 
 performed */
+int iotype = 0;
 
 #define $CRG {memory[memIndx++] = CRG;}
 #define $CRC {memory[memIndx++] = CRC;}
@@ -34,6 +35,8 @@ performed */
 #define $GMEM(x) {memory[x];} 
 #define $GREG(x, y) reg[x][y] 
 
+#define $PUT(msg) if (iotype == 1) {fprintf(stdout, msg);}
+
 #define _$STDI {memory[memIndx++] = STDI;}
 #define _$DATA memory[memIndx++] =
 #define _$COND memory[memIndx++] = 
@@ -45,5 +48,6 @@ performed */
 #define _RUN {memInter();}
 #define _toNCP(name) {strcpy(filename, name);} {ncpGen();}
 #define _DEB {memory[memIndx++] = DEB;}
+#define _IO iotype = 
 
 #endif // TVMASM_H_INCLUDED

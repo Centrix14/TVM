@@ -31,7 +31,8 @@ enum commands { /* Список комманд / List of commands */
 	JPT, /* Jump PoinT метка для инструкции GJP [6] */
 	DEB, /* DEBug выводит номер читаемой ячейки [7] */
 	MAIN, /* Точка начала исполнения программы / The start point of program execution [8] */
-	COM /* Использование комманды / Using the command [9] */
+	COM, /* Использование комманды / Using the command [9] */
+	PUT
 };
 
 enum flags { /* Список флагов / List of flags */
@@ -178,6 +179,9 @@ void memInter() {
 			detcoorv(memory[cell + 2], &r1x, &r1y);
 			detcoorv(memory[cell + 3], &r2x, &r2y);
 			reg[r2x][r2y] = reg[r1x][r1y];
+		}
+		else if (memory[cell] == PUT) {
+			printf("%d ", memory[cell + 1]);
 		}
 		else if (memory[cell] == DEB) {
 			printf("%d\n", cell);

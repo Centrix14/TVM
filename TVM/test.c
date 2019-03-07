@@ -11,7 +11,7 @@ int main(void) {
 	$PRCA R11;
 	_$DATA R15;
 	_END
-	_RUN
+	_toNCP("app.ncp")
 	printf("%d\t%d\t%d", reg[1][5], indxX, indxY);
 	system("pause>nul");
 	return 0;

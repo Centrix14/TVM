@@ -42,6 +42,15 @@ void ncpGen() {
 				fprintf(code, "%d %d %d ", GJP, memory[i + 1], memory[i + 2]);
 				i--;
 			}
+			else if (memory[i] == CRG && memory[i + 1] == STDA) {
+				fprintf(code, "%d %d %d ", CRG, STDA, memory[i + 2]);
+			}
+			else if (memory[i] == PRG && memory[i + 1] == STDA) {
+				fprintf(code, "%d %d %d ", PRG, STDA, memory[i + 2]);
+			}
+			else if (memory[i] == PRC && memory[i + 1] == STDA) {
+				fprintf(code, "%d %d %d %d ", PRC, STDA, memory[i + 2], memory[i + 3]);
+			}
 			else if (memory[i] == DEB) {
 				fprintf(code, "%d ", DEB);
 			}
@@ -50,6 +59,9 @@ void ncpGen() {
 			}
 			else if (memory[i] == COM) {
 				fprintf(code, "%d %d ", COM, memory[i + 1]);
+			}
+			else if (memory[i] == PUT) {
+				fprintf(code, "%d %d ", PUT, memory[i + 1]);
 			}
 			i++;
 		}
