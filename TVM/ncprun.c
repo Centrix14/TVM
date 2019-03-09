@@ -1,16 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "tvmlib.h"
+#include "tsl.c"
+#include "main.h"
 
 /*
-ncprun.c v0.3
+ncprun.c v0.3.1
 Программа запуска ncp файлов / NCP file launcher
 07.03.2019
 by Centrix
 */
-
-int flen(char* name); /* Подсчёт символов в файле / Counting characters in a file */
 
 int flen(char* name) {
 	int i = 0;

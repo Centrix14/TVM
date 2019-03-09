@@ -2,19 +2,17 @@
 #define TVMASM_H_INCLUDED
 
 /*
-tvmAsm.h v0.3
+tvmAsm.h v0.3.1
 Заголовочный файл ассемблера TVM / TVM assembler header file
-07.03.2019
+08.03.2019
 by Centrix
 */
 
 #include <stdio.h>
 #include <string.h>
-#include "tvmlib.h"
-#include "ncpgen.h"
-
-int memIndx = 0; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is 
-performed */
+#include "tsl.c"
+#include "ngl.c"
+#include "main.h"
 
 #define $CRG {memory[memIndx++] = CRG;}
 #define $CRC {memory[memIndx++] = CRC;}
@@ -35,6 +33,7 @@ performed */
 #define $GREG(x, y) reg[x][y] 
 
 #define _$STDI {memory[memIndx++] = STDI;}
+#define _$STDA {memory[memIndx++] = STDA;}
 #define _$DATA memory[memIndx++] =
 #define _$COND memory[memIndx++] = 
 
