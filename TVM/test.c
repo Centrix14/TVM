@@ -6,13 +6,18 @@ int main(void) {
 	/* Файл для тестирования TVM */
 	/* File for testing TVM */
 	_MAIN
-		$CRGA R10;
-		$PRCI 123;
-		$PRGA R11;
-		_$DATA R10;
+	$CRG
+		_$STDI
+		_$DATA 1;
+	$CRC
+		_$STDI
+		_$DATA 0;
+	$PRC
+		_$STDI
+		_$DATA 123;
 	_END
-	_RUN
-	printf("%d", reg[1][1]);
+	_toNCP("app.ncp")
+	printf("%d\t%d\t%d", reg[1][5], indxX, indxY);
 	system("pause>nul");
 	return 0;
 }
