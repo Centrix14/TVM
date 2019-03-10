@@ -1,10 +1,10 @@
-#include "main.h"
 #include <stdio.h>
+#include "tsl.h"
 
 /*
-TvmStandartLib v0.1
-Реализует функции из tvmLib.h
-08.03.2019
+TvmStandartLib v0.3.2
+Главная библиотека TVM
+10.03.2019
 by Centrix
 */
 
@@ -46,39 +46,43 @@ void clear(int endpoint) {
 
 void memInter() {
 	while (memory[cell] != end) {
+		if (cell == 0) {
+			cell = gotoMain();
+		}
 		switch (memory[cell])
 		{
-		case nil:
-			cell = gotoMain();
-			break;
-		case CRG:
+		case CRG: {
 			if (memory[cell + 1] == STDI) {
 				indxX = memory[cell + 2];
-				cell++;
+				cell += 2;
 			}
 			else if (memory[cell + 1] == STDA) {
 				detcoor(memory[cell + 2]);
+				cell += 2;
 			}
 			break;
-		case CRC:
+		}
+		case CRC: {
 			if (memory[cell + 1] == STDI) {
 				indxY = memory[cell + 2];
-				cell++;
+				cell += 2;
 			}
 			break;
-		case PRG:
+		}
+		case PRG: {
 			if (memory[cell + 1] == STDI) {
 				reg[indxX][0] = memory[cell + 2];
-				cell++;
+				cell += 2;
 			}
 			else if (memory[cell + 1] == STDA) {
 				reg[indxX][indxY] = memory[cell + 2];
 			}
 			break;
-		case PRC:
+		}
+		case PRC: {
 			if (memory[cell + 1] == STDI) {
 				reg[indxX][indxY] = memory[cell + 2];
-				cell++;
+				cell += 2;
 			}
 			else if (memory[cell + 1] == STDA) {
 				int r1x, r1y, r2x, r2y;
@@ -87,26 +91,40 @@ void memInter() {
 				reg[r2x][r2y] = reg[r1x][r1y];
 			}
 			break;
-		case GJP:
+		}
+		case GJP: {
 			if (memory[cell + 1] != nil && memory[cell + 2] > nil) {
 				cell = jump(memory[cell + 1]);
-				cell--;
+				--cell;
 			}
 			break;
-		case PUT:
-			printf("%d ", memory[cell + 1]);
+		}
+		case PUT: {
+			int tmp1, tmp2;
+			detcoorv(memory[cell + 2], &tmp1, &tmp2);
+
+			if (memory[cell + 1] == STDI) {
+				printf("%d", reg[tmp1][tmp2]);
+			}
+			else if (memory[cell + 1] == STDC) {
+				printf("%c", reg[tmp1][tmp2]);
+			}
 			break;
-		case DEB:
+		}
+		case DEB: {
 			printf("%d\n", cell);
 			break;
-		case RESTART:
+		}
+		case RESTART: {
 			cell = 0;
 			break;
-		case QUIT:
+		}
+		case QUIT: {
 			memory[cell] = end;
-			cell--;
+			--cell;
 			break;
-		case CLEAR:
+		}
+		case CLEAR: {
 			if (memory[cell + 1] == ALL) {
 				clear(memory[cell]);
 			}
@@ -114,6 +132,7 @@ void memInter() {
 				memory[memory[cell + 1]] = nil;
 			}
 			break;
+		}
 		}
 		cell++;
 	}

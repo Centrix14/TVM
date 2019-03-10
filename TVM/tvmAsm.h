@@ -2,9 +2,9 @@
 #define TVMASM_H_INCLUDED
 
 /*
-tvmAsm.h v0.3.1
+tvmAsm.h v0.3.2
 Заголовочный файл ассемблера TVM / TVM assembler header file
-08.03.2019
+10.03.2019
 by Centrix
 */
 
@@ -12,7 +12,6 @@ by Centrix
 #include <string.h>
 #include "tsl.c"
 #include "ngl.c"
-#include "main.h"
 
 #define $CRG {memory[memIndx++] = CRG;}
 #define $CRC {memory[memIndx++] = CRC;}
@@ -31,9 +30,13 @@ by Centrix
 #define $SMEM(x, value) {memory[x] = value;}
 #define $GMEM(x) {memory[x];} 
 #define $GREG(x, y) reg[x][y] 
+#define $PUT {memory[memIndx++] = PUT;}
+#define $PUTV {memory[memIndx++] = PUT;} {memory[memIndx++] = STDI;} memory[memIndx++] = 
+#define $PUTC {memory[memIndx++] = PUT;} {memory[memIndx++] = STDC;} memory[memIndx++] = 
 
 #define _$STDI {memory[memIndx++] = STDI;}
 #define _$STDA {memory[memIndx++] = STDA;}
+#define _$STDC {memory[memIndx++] = STDC;}
 #define _$DATA memory[memIndx++] =
 #define _$COND memory[memIndx++] = 
 

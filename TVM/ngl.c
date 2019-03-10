@@ -1,10 +1,10 @@
-#include "main.h"
 #include <stdio.h>
+#include "tsl.h"
 
 /*
-NcpGenLib.h v0.1
-Реализует функции связанные с генерированием .ncp файлов
-08.03.2019
+NcpGenLib.c v0.3.2
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ .ncp пїЅпїЅпїЅпїЅпїЅпїЅ
+10.03.2019
 by Centrix
 */
 
@@ -42,7 +42,7 @@ void ncpGen() {
 				break;
 			case PRC:
 				if (memory[i + 1] == STDI) {
-					fprintf(code, "%d %d ", PRC, STDI);
+					fprintf(code, "%d %d %d ", PRC, STDI, memory[i + 2]);
 					i++;
 				}
 				else if (memory[i + 1] == STDA) {
@@ -57,7 +57,7 @@ void ncpGen() {
 				break;
 			case JPT:
 				if (memory[i + 1] > nil) {
-					fprintf(code, "%d %d", JPT, memory[i + 1]);
+					fprintf(code, "%d %d ", JPT, memory[i + 1]);
 					i++;
 				}
 				break;
@@ -71,7 +71,7 @@ void ncpGen() {
 				fprintf(code, "%d %d ", COM, memory[i + 1]);
 				break;
 			case PUT:
-				fprintf(code, "%d %d ", PUT, memory[i + 1]);
+				fprintf(code, "%d %d %d ", PUT, memory[i + 1], memory[i + 2]);
 				break;
 			case RESTART:
 				fprintf(code, "%d %d ", RESTART, memory[i + 1]);

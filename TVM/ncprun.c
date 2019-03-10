@@ -2,11 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include "tsl.c"
-#include "main.h"
 
 /*
-ncprun.c v0.3.1
-Программа запуска ncp файлов / NCP file launcher
+ncprun.c v0.3.2
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ncp пїЅпїЅпїЅпїЅпїЅпїЅ / NCP file launcher
 07.03.2019
 by Centrix
 */
