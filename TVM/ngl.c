@@ -71,7 +71,14 @@ void ncpGen() {
 				fprintf(code, "%d %d ", COM, memory[i + 1]);
 				break;
 			case PUT:
-				fprintf(code, "%d %d %d ", PUT, memory[i + 1], memory[i + 2]);
+				//fprintf(code, "%d %d %d ", PUT, memory[i + 1], memory[i + 2]);
+				if (memory[i + 1] == STDI || memory[i + 1] == STDC || memory[i + 1] == CWR || memory[i + 1] == VWR) {
+					fprintf(code, "%d %d %d ", PUT, memory[i + 1], memory[i + 2]);
+				}
+				else if (memory[i + 1] == ACC) {
+					fprintf(code, "%d %d ", PUT, ACC);
+					i++;
+				}
 				break;
 			case RESTART:
 				fprintf(code, "%d %d ", RESTART, memory[i + 1]);

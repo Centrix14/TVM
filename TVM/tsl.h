@@ -20,6 +20,7 @@ unsigned int cell; /* Указатель на читаемую ячейку па
 unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
+unsigned int acc; /* Аккумулятор / Accumularor */
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -47,14 +48,19 @@ enum commands { /* Список комманд / List of commands */
 	PUT, /* Простейший вывод / The simplest conclusion [10] */
 	RESTART, /* Начало исполнения программы заново / Start of program execution again [11] */
 	QUIT, /* Завершение работы программы / The completion of the program [12] */
-	CLEAR /* Очищение определённых ячеек памяти / Clearing specific memory locations [13] */
+	CLEAR, /* Очищение определённых ячеек памяти / Clearing specific memory locations [13] */
+	ACCADD, /* Увиличение аккумулятора [14] */
+	ACCSUBT /* Уменьшение аккумулятора [15] */
 };
 
 enum flags { /* Список флагов / List of flags */
 	STDI = 1, /* Стандартный флаг / Standard flag */
 	STDA, /* Адресный флаг / Address flag */
 	STDC, /* Флаг для символов */
-	ALL /* Флаг для _CLEAR / The _CLEAR flag for */
+	CWR, /* Char Without Register */
+	VWR, /* Value Without Register */
+	ALL, /* Флаг для _CLEAR / The _CLEAR flag for */
+	ACC /* Флаг для взаимодействия с аккумулятором */
 };
 
 enum Regs { /* Список всех регистров / List of all registers */

@@ -6,11 +6,11 @@ int main(void) {
 	/* Файл для тестирования TVM */
 	/* File for testing TVM */
 	_MAIN
-		$CRGA R20;
-		$PRCI 65;
-		$PUTC R20;
+	$ADDI
+	$PUTA
 	_END
-	_toNCP("exp.ncp")
+	_RUN
+	_toNCP("app.ncp")
 	system("pause>nul");
 	return 0;
 }

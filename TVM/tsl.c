@@ -9,18 +9,17 @@ by Centrix
 */
 
 int jump(int num) {
-	unsigned int i = 0;
-	while (memory[i] != end) {
+	for (int i = 0; i != end; i++) {
 		if (memory[i] == num) {
 			return i;
 		}
-		i++;
 	}
 	return 0;
 }
 
 int gotoMain() {
 	unsigned int i = 0;
+	acc = 0;
 	while (memory[i] != MAIN) {
 		i++;
 	}
@@ -38,8 +37,7 @@ void detcoorv(int rtype, int* x, int* y) {
 }
 
 void clear(int endpoint) {
-	int i = 0;
-	while (i != endpoint) {
+	for (int i = 0; i < endpoint; i++) {
 		memory[i] = nil;
 	}
 }
@@ -103,11 +101,31 @@ void memInter() {
 			int tmp1, tmp2;
 			detcoorv(memory[cell + 2], &tmp1, &tmp2);
 
-			if (memory[cell + 1] == STDI) {
-				printf("%d", reg[tmp1][tmp2]);
-			}
-			else if (memory[cell + 1] == STDC) {
-				printf("%c", reg[tmp1][tmp2]);
+			switch (memory[cell + 1]) {
+				case STDI: {
+					printf("%d", reg[tmp1][tmp2]);
+					break;
+				}
+
+				case STDC: {
+					printf("%c", reg[tmp1][tmp2]);
+					break;
+				}
+
+				case CWR: {
+					printf("%c", memory[cell + 2]);
+					break;
+				}
+
+				case VWR: {
+					printf("%d", memory[cell + 2]);
+					break;
+				}
+				case ACC: {
+					printf("%d", acc);
+					cell++;
+					break;
+				}
 			}
 			break;
 		}
@@ -126,10 +144,32 @@ void memInter() {
 		}
 		case CLEAR: {
 			if (memory[cell + 1] == ALL) {
-				clear(memory[cell]);
+				clear(cell);
 			}
 			else {
 				memory[memory[cell + 1]] = nil;
+			}
+			break;
+		}
+		case ACCADD: {
+			if (memory[cell + 1] == STDI) {
+				++acc;
+			}
+			else if (memory[cell + 1] == STDA) {
+				int tmp1, tmp2; 
+				detcoorv(memory[cell + 2], &tmp1, &tmp2);
+				acc += reg[tmp1][tmp2];
+			}
+			break;
+		}
+		case ACCSUBT: {
+			if (memory[cell + 1] == STDI) {
+				--acc;
+			}
+			else if (memory[cell + 1] == STDA) {
+				int tmp1, tmp2;
+				detcoorv(memory[cell + 2], &tmp1, &tmp2);
+				acc -= reg[tmp1][tmp2];
 			}
 			break;
 		}
