@@ -2,9 +2,9 @@
 #define TVMASM_H_INCLUDED
 
 /*
-tvmAsm.h v0.3.2
+tvmAsm.h v0.3.3
 Заголовочный файл ассемблера TVM / TVM assembler header file
-10.03.2019
+14.03.2019
 by Centrix
 */
 
@@ -37,6 +37,9 @@ by Centrix
 #define $PUTVWR {memory[memIndx++] = PUT;} {memory[memIndx++] = VWR;} memory[memIndx++] = 
 #define $PUTA {memory[memIndx++] = PUT;} {memory[memIndx++] = ACC;}
 #define $ADDI {memory[memIndx++] = ACCADD;} {memory[memIndx++] = STDI;}
+#define $SUBTI {memory[memIndx++] = ACCSUBT;} {memory[memIndx++] = STDI;}
+#define $ADDA {memory[memIndx++] = ACCADD;} {memory[memIndx++] = STDA;}
+#define $SUBTA {memory[memIndx++] = ACCSUBT;} {memory[memIndx++] = STDA;}
 
 #define _$STDI {memory[memIndx++] = STDI;}
 #define _$STDA {memory[memIndx++] = STDA;}

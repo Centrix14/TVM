@@ -2,9 +2,9 @@
 #include "tsl.h"
 
 /*
-NcpGenLib.c v0.3.2
+NcpGenLib.c v0.3.3
 ��������� ������� ��������� � �������������� .ncp ������
-10.03.2019
+14.03.2019
 by Centrix
 */
 
@@ -16,7 +16,7 @@ void ncpGen() {
 		while (memory[i] != end) {
 			switch (memory[i])
 			{
-			case CRG:
+			case CRG: {
 				if (memory[i + 1] == STDI) {
 					fprintf(code, "%d %d ", CRG, STDI);
 					i++;
@@ -25,13 +25,15 @@ void ncpGen() {
 					fprintf(code, "%d %d %d ", CRG, STDA, memory[i + 2]);
 				}
 				break;
-			case CRC:
+			}
+			case CRC: {
 				if (memory[i + 1] == STDI) {
 					fprintf(code, "%d %d ", CRC, STDI);
 					i++;
 				}
 				break;
-			case PRG:
+			}
+			case PRG: {
 				if (memory[i + 1] == STDI) {
 					fprintf(code, "%d %d ", PRG, STDI);
 					i++;
@@ -40,7 +42,8 @@ void ncpGen() {
 					fprintf(code, "%d %d %d ", PRG, STDA, memory[i + 2]);
 				}
 				break;
-			case PRC:
+			}
+			case PRC: {
 				if (memory[i + 1] == STDI) {
 					fprintf(code, "%d %d %d ", PRC, STDI, memory[i + 2]);
 					i++;
@@ -49,46 +52,63 @@ void ncpGen() {
 					fprintf(code, "%d %d %d %d ", PRC, STDA, memory[i + 2], memory[i + 3]);
 				}
 				break;
-			case GJP:
+			}
+			case GJP: {
 				if (memory[i + 1] != nil && memory[i + 2] > nil) {
 					fprintf(code, "%d %d %d ", GJP, memory[i + 1], memory[i + 2]);
 					i--;
 				}
 				break;
-			case JPT:
+			}
+			case JPT: {
 				if (memory[i + 1] > nil) {
 					fprintf(code, "%d %d ", JPT, memory[i + 1]);
 					i++;
 				}
 				break;
-			case DEB:
+			}
+			case DEB: {
 				fprintf(code, "%d ", DEB);
 				break;
-			case MAIN:
+			}
+			case MAIN: {
 				fprintf(code, "%d ", MAIN);
 				break;
-			case COM:
+			}
+			case COM: {
 				fprintf(code, "%d %d ", COM, memory[i + 1]);
 				break;
-			case PUT:
-				//fprintf(code, "%d %d %d ", PUT, memory[i + 1], memory[i + 2]);
+			}
+			case PUT: {
 				if (memory[i + 1] == STDI || memory[i + 1] == STDC || memory[i + 1] == CWR || memory[i + 1] == VWR) {
 					fprintf(code, "%d %d %d ", PUT, memory[i + 1], memory[i + 2]);
+					i += 2;
 				}
 				else if (memory[i + 1] == ACC) {
 					fprintf(code, "%d %d ", PUT, ACC);
 					i++;
 				}
 				break;
-			case RESTART:
+			}
+			case RESTART: {
 				fprintf(code, "%d %d ", RESTART, memory[i + 1]);
 				break;
-			case QUIT:
+			}
+			case QUIT: {
 				fprintf(code, "%d ", QUIT);
 				break;
-			case CLEAR:
+			}
+			case CLEAR: {
 				fprintf(code, "%d %d ", CLEAR, memory[cell + 1]);
 				break;
+			}
+			case ACCADD: {
+				fprintf(code, "%d %d ", ACCADD, memory[i + 1]);
+				break;
+			}
+			case ACCSUBT: {
+				fprintf(code, "%d %d ", ACCSUBT, memory[i + 1]);
+			}
 			}
 			i++;
 		}

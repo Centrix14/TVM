@@ -2,9 +2,9 @@
 #include "tsl.h"
 
 /*
-TvmStandartLib v0.3.2
+TvmStandartLib v0.3.3
 Главная библиотека TVM
-10.03.2019
+14.03.2019
 by Centrix
 */
 
@@ -104,21 +104,25 @@ void memInter() {
 			switch (memory[cell + 1]) {
 				case STDI: {
 					printf("%d", reg[tmp1][tmp2]);
+					cell += 2;
 					break;
 				}
 
 				case STDC: {
 					printf("%c", reg[tmp1][tmp2]);
+					cell += 2;
 					break;
 				}
 
 				case CWR: {
 					printf("%c", memory[cell + 2]);
+					cell += 2;
 					break;
 				}
 
 				case VWR: {
 					printf("%d", memory[cell + 2]);
+					cell += 2;
 					break;
 				}
 				case ACC: {
