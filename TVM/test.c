@@ -7,9 +7,14 @@ int main(void) {
 	/* File for testing TVM */
 	_MAIN
 	$CRGA R10;
-	$PRCI 123;
-	$ADDA R10;
-	$PUTA
+	$PRCI 12;
+	$CRGA R11;
+	$PRCI 10;
+	$CMPA
+		_$DATA R10;
+		_$DATA R11;
+		_$DATA R12;
+	$PUTV R12;
 	_END
 	_RUN
 	system("pause>nul");

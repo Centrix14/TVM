@@ -2,14 +2,14 @@
 #include "tsl.h"
 
 /*
-TvmStandartLib v0.3.3
+TvmStandartLib v0.3.4
 Главная библиотека TVM
-14.03.2019
+17.03.2019
 by Centrix
 */
 
 int jump(int num) {
-	for (int i = 0; i != end; i++) {
+	for (int i = 0; i < MEMSIZE-1; i++) {
 		if (memory[i] == num) {
 			return i;
 		}
@@ -87,6 +87,7 @@ void memInter() {
 				detcoorv(memory[cell + 2], &r1x, &r1y);
 				detcoorv(memory[cell + 3], &r2x, &r2y);
 				reg[r2x][r2y] = reg[r1x][r1y];
+				cell++;
 			}
 			break;
 		}
@@ -102,34 +103,34 @@ void memInter() {
 			detcoorv(memory[cell + 2], &tmp1, &tmp2);
 
 			switch (memory[cell + 1]) {
-				case STDI: {
-					printf("%d", reg[tmp1][tmp2]);
-					cell += 2;
-					break;
-				}
+			case STDI: {
+				printf("%d", reg[tmp1][tmp2]);
+				cell += 2;
+				break;
+			}
 
-				case STDC: {
-					printf("%c", reg[tmp1][tmp2]);
-					cell += 2;
-					break;
-				}
+			case STDC: {
+				printf("%c", reg[tmp1][tmp2]);
+				cell += 2;
+				break;
+			}
 
-				case CWR: {
-					printf("%c", memory[cell + 2]);
-					cell += 2;
-					break;
-				}
+			case CWR: {
+				printf("%c", memory[cell + 2]);
+				cell += 2;
+				break;
+			}
 
-				case VWR: {
-					printf("%d", memory[cell + 2]);
-					cell += 2;
-					break;
-				}
-				case ACC: {
-					printf("%d", acc);
-					cell++;
-					break;
-				}
+			case VWR: {
+				printf("%d", memory[cell + 2]);
+				cell += 2;
+				break;
+			}
+			case ACC: {
+				printf("%d", acc);
+				cell++;
+				break;
+			}
 			}
 			break;
 		}
@@ -160,7 +161,7 @@ void memInter() {
 				++acc;
 			}
 			else if (memory[cell + 1] == STDA) {
-				int tmp1, tmp2; 
+				int tmp1, tmp2;
 				detcoorv(memory[cell + 2], &tmp1, &tmp2);
 				acc += reg[tmp1][tmp2];
 			}
@@ -174,6 +175,18 @@ void memInter() {
 				int tmp1, tmp2;
 				detcoorv(memory[cell + 2], &tmp1, &tmp2);
 				acc -= reg[tmp1][tmp2];
+			}
+			break;
+		}
+		case CMP: {
+			if (memory[cell + 1] == STDA) {
+				int tmp1, tmp2, tmp3, tmp4;
+				int ansX, ansY;
+				detcoorv(memory[cell + 2], &tmp1, &tmp2);
+				detcoorv(memory[cell + 3], &tmp3, &tmp4);
+				detcoorv(memory[cell + 4], &ansX, &ansY);
+				reg[ansX][ansY] = reg[tmp1][tmp2] - reg[tmp3][tmp4];
+				cell += 4;
 			}
 			break;
 		}

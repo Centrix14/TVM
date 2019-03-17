@@ -4,9 +4,9 @@
 #include <stdio.h>
 
 /*
-tsl.h v0.3.3
+tsl.h v0.3.4
 Объявляет ресурсы для tsl.c
-14.03.2019
+17.03.2019
 by Centrix
 */
 
@@ -50,7 +50,8 @@ enum commands { /* Список комманд / List of commands */
 	QUIT, /* Завершение работы программы / The completion of the program [12] */
 	CLEAR, /* Очищение определённых ячеек памяти / Clearing specific memory locations [13] */
 	ACCADD, /* Увиличение аккумулятора [14] */
-	ACCSUBT /* Уменьшение аккумулятора [15] */
+	ACCSUBT, /* Уменьшение аккумулятора [15] */
+	CMP /* Сравнения значений в регистрах [16] */
 };
 
 enum flags { /* Список флагов / List of flags */

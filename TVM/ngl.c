@@ -2,9 +2,9 @@
 #include "tsl.h"
 
 /*
-NcpGenLib.c v0.3.3
-��������� ������� ��������� � �������������� .ncp ������
-14.03.2019
+NcpGenLib.c v0.3.4 BETA
+Создание .ncp файлов
+17.03.2019
 by Centrix
 */
 
@@ -12,7 +12,9 @@ void ncpGen() {
 	code = fopen(filename, "w");
 	int i = 0;
 
-	if (code != NULL) {
+	if (code == NULL) { perror("Fail"); }
+
+	else {
 		while (memory[i] != end) {
 			switch (memory[i])
 			{
@@ -23,6 +25,7 @@ void ncpGen() {
 				}
 				else if (memory[i + 1] == STDA) {
 					fprintf(code, "%d %d %d ", CRG, STDA, memory[i + 2]);
+					i += 2;
 				}
 				break;
 			}
@@ -40,16 +43,18 @@ void ncpGen() {
 				}
 				else if (memory[i + 1] == STDA) {
 					fprintf(code, "%d %d %d ", PRG, STDA, memory[i + 2]);
+					i++;
 				}
 				break;
 			}
 			case PRC: {
 				if (memory[i + 1] == STDI) {
 					fprintf(code, "%d %d %d ", PRC, STDI, memory[i + 2]);
-					i++;
+					i += 2;
 				}
 				else if (memory[i + 1] == STDA) {
 					fprintf(code, "%d %d %d %d ", PRC, STDA, memory[i + 2], memory[i + 3]);
+					i += 3;
 				}
 				break;
 			}
@@ -108,14 +113,17 @@ void ncpGen() {
 			}
 			case ACCSUBT: {
 				fprintf(code, "%d %d ", ACCSUBT, memory[i + 1]);
+				break;
+			}
+			case CMP: {
+				fprintf(code, "%d %d %d %d %d ", CMP, memory[i+1], memory[i+2], memory[i+3], memory[i+4]);
+				i += 4;
+				break;
 			}
 			}
 			i++;
 		}
 		fprintf(code, "%d", end);
-	}
-	else {
-		perror("Fail");
 	}
 	fclose(code);
 }
