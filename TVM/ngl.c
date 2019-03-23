@@ -61,7 +61,7 @@ void ncpGen() {
 			case GJP: {
 				if (memory[i + 1] != nil && memory[i + 2] > nil) {
 					fprintf(code, "%d %d %d ", GJP, memory[i + 1], memory[i + 2]);
-					i--;
+					i += 2;
 				}
 				break;
 			}
@@ -118,6 +118,10 @@ void ncpGen() {
 			case CMP: {
 				fprintf(code, "%d %d %d %d %d ", CMP, memory[i+1], memory[i+2], memory[i+3], memory[i+4]);
 				i += 4;
+				break;
+			}
+			case GOBACK: {
+				fprintf(code, "%d ", GOBACK);
 				break;
 			}
 			}

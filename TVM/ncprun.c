@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
 			}
 			i++;
 		}
+		cell = 0;
 		memInter();
 	}
 	else {

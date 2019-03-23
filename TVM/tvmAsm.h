@@ -41,6 +41,7 @@ by Centrix
 #define $ADDA {memory[memIndx++] = ACCADD;} {memory[memIndx++] = STDA;}
 #define $SUBTA {memory[memIndx++] = ACCSUBT;} {memory[memIndx++] = STDA;}
 #define $CMPA {memory[memIndx++] = CMP;} {memory[memIndx++] = STDA;} 
+#define $CMPWR {memory[memIndx++] = CMP;} {memory[memIndx++] = STDI;}
 
 #define _$STDI {memory[memIndx++] = STDI;}
 #define _$STDA {memory[memIndx++] = STDA;}
@@ -63,5 +64,6 @@ by Centrix
 #define _toNCP(name) {strcpy(filename, name);} {ncpGen();}
 #define _COM(name) _RUN _toNCP(name)
 #define _DEB {memory[memIndx++] = DEB;}
+#define _GOBACK {memory[memIndx++] = GOBACK;}
 
 #endif // TVMASM_H_INCLUDED

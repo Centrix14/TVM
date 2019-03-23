@@ -17,6 +17,7 @@ unsigned int memory[MEMSIZE];
 unsigned int memIndx; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is
 performed */
 unsigned int cell; /* Указатель на читаемую ячейку памяти  / Pointer to a readable memory cell */
+unsigned int cellOld;
 unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
@@ -51,7 +52,8 @@ enum commands { /* Список комманд / List of commands */
 	CLEAR, /* Очищение определённых ячеек памяти / Clearing specific memory locations [13] */
 	ACCADD, /* Увиличение аккумулятора [14] */
 	ACCSUBT, /* Уменьшение аккумулятора [15] */
-	CMP /* Сравнения значений в регистрах [16] */
+	CMP, /* Сравнения значений в регистрах [16] */
+	GOBACK /* [17] */
 };
 
 enum flags { /* Список флагов / List of flags */

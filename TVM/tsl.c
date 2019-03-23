@@ -93,6 +93,7 @@ void memInter() {
 		}
 		case GJP: {
 			if (memory[cell + 1] != nil && memory[cell + 2] > nil) {
+				cellOld = cell;
 				cell = jump(memory[cell + 1]);
 				--cell;
 			}
@@ -104,7 +105,6 @@ void memInter() {
 
 			switch (memory[cell + 1]) {
 			case STDI: {
-				printf("%d", reg[tmp1][tmp2]);
 				cell += 2;
 				break;
 			}
@@ -181,13 +181,25 @@ void memInter() {
 		case CMP: {
 			if (memory[cell + 1] == STDA) {
 				int tmp1, tmp2, tmp3, tmp4;
-				int ansX, ansY;
+				auto int ansX, ansY;
 				detcoorv(memory[cell + 2], &tmp1, &tmp2);
 				detcoorv(memory[cell + 3], &tmp3, &tmp4);
 				detcoorv(memory[cell + 4], &ansX, &ansY);
 				reg[ansX][ansY] = reg[tmp1][tmp2] - reg[tmp3][tmp4];
 				cell += 4;
 			}
+			else if (memory[cell + 1] == STDI) {
+				int val1 = memory[cell + 2], val2 = memory[cell + 3];
+				auto int ansX, ansY;
+				detcoorv(memory[cell + 4], &ansX, &ansY);
+				reg[ansX][ansY] = val1 - val2;
+				cell += 4;
+			}
+			break;
+		}
+		case GOBACK: {
+			cell = cellOld;
+			cell++;
 			break;
 		}
 		}
