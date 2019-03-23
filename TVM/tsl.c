@@ -2,9 +2,9 @@
 #include "tsl.h"
 
 /*
-TvmStandartLib v0.3.4
+TvmStandartLib v0.3.5
 Главная библиотека TVM
-17.03.2019
+23.03.2019
 by Centrix
 */
 

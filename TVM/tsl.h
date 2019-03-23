@@ -4,9 +4,9 @@
 #include <stdio.h>
 
 /*
-tsl.h v0.3.4
+tsl.h v0.3.5
 Объявляет ресурсы для tsl.c
-17.03.2019
+23.03.2019
 by Centrix
 */
 
