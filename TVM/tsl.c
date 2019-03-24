@@ -105,6 +105,7 @@ void memInter() {
 
 			switch (memory[cell + 1]) {
 			case STDI: {
+				printf("%d", reg[tmp1][tmp2]);
 				cell += 2;
 				break;
 			}
@@ -190,7 +191,7 @@ void memInter() {
 			}
 			else if (memory[cell + 1] == STDI) {
 				int val1 = memory[cell + 2], val2 = memory[cell + 3];
-				auto int ansX, ansY;
+				int ansX, ansY;
 				detcoorv(memory[cell + 4], &ansX, &ansY);
 				reg[ansX][ansY] = val1 - val2;
 				cell += 4;
@@ -198,8 +199,7 @@ void memInter() {
 			break;
 		}
 		case GOBACK: {
-			cell = cellOld;
-			cell++;
+			cell = cellOld + 1;
 			break;
 		}
 		}
