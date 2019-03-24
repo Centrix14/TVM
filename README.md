@@ -10,3 +10,5 @@ At the moment, programs under TVM can be written in two ways: the first is TA0. 
 TVM is also able to run the files .ncp (it's own standard files for TVM).
 > To create an ncp file, you need to include the ncpgen header file.h. Then you need to use a utility ncprun.c (compile it), this utility takes the file name as command line arguments.
 > It can also accept the-m flag then, among other things, the contents of the ncp file will be displayed.
+
+## For more information about TVM, read the documentation in the TVM/docs/en or rus directory
