@@ -4,8 +4,7 @@ TVM (Tiny Virtual Machine) is a compact virtual machine. Having its no less comp
 > Despite the non-printing characteristics, the memory and registers will be increased in the future.
 
 ## TVM programming
-TVM at the moment prolongiruetsa only one way - TA0. TA0 is the native simplified assembler of TVM.
-> To use a TA is required to include the header file tvmAsm.h.
+At the moment, programs under TVM can be written in two ways: the first is TA0. Simple built-in assembler for TVM. There is also a second way, it is a programming language nom, similar to TA0 but does not require binding to gcc. The nom language is still in development, so bugs are not excluded when using it.
 
 ## Running programs on TVM
 TVM is also able to run the files .ncp (it's own standard files for TVM).
