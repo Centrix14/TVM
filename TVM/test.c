@@ -5,14 +5,8 @@
 int main(void) {
 	/* Файл для тестирования TVM */
 	/* File for testing TVM */
-	_POINT 1;
-	$PUTCWR 65;
-	_GOBACK
-	_MAIN
-	$JUMP 1;
-	_$COND 1;
-	_END
-	_toNCP("app1.ncp")
+	scanf("%d", &reg[1][0]);
+	printf("%d", reg[1][0]);
 	system("pause>nul");
 	return 0;
 }

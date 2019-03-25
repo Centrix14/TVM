@@ -36,6 +36,7 @@ by Centrix
 #define $PUTCWR {memory[memIndx++] = PUT;} {memory[memIndx++] = CWR;} memory[memIndx++] = 
 #define $PUTVWR {memory[memIndx++] = PUT;} {memory[memIndx++] = VWR;} memory[memIndx++] = 
 #define $PUTA {memory[memIndx++] = PUT;} {memory[memIndx++] = ACC;}
+#define $PUTCA {memory[memIndx++] = PUT;} {memory[memIndx++] = CACC;}
 #define $ADDI {memory[memIndx++] = ACCADD;} {memory[memIndx++] = STDI;}
 #define $SUBTI {memory[memIndx++] = ACCSUBT;} {memory[memIndx++] = STDI;}
 #define $ADDA {memory[memIndx++] = ACCADD;} {memory[memIndx++] = STDA;}
@@ -52,6 +53,7 @@ by Centrix
 #define _$COND memory[memIndx++] = 
 #define _$ALL {memory[memIndx++] = ALL;}
 #define _$ACC {memory[memIndx++] = ACC;}
+#define _$CACC {memory[memIndx++] = CACC;}
 
 #define _RESTART {memory[memIndx++] = RESTART;}
 #define _QUIT {memory[memIndx++] = QUIT;}

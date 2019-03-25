@@ -132,6 +132,11 @@ void memInter() {
 				cell++;
 				break;
 			}
+			case CACC: {
+				printf("%c", acc);
+				cell++;
+				break;
+			}
 			}
 			break;
 		}
@@ -159,23 +164,25 @@ void memInter() {
 		}
 		case ACCADD: {
 			if (memory[cell + 1] == STDI) {
-				++acc;
+				acc++;
 			}
 			else if (memory[cell + 1] == STDA) {
 				int tmp1, tmp2;
 				detcoorv(memory[cell + 2], &tmp1, &tmp2);
 				acc += reg[tmp1][tmp2];
+				cell += 2;
 			}
 			break;
 		}
 		case ACCSUBT: {
 			if (memory[cell + 1] == STDI) {
-				--acc;
+				acc--;
 			}
 			else if (memory[cell + 1] == STDA) {
 				int tmp1, tmp2;
 				detcoorv(memory[cell + 2], &tmp1, &tmp2);
 				acc -= reg[tmp1][tmp2];
+				cell += 2;
 			}
 			break;
 		}
@@ -200,6 +207,33 @@ void memInter() {
 		}
 		case GOBACK: {
 			cell = cellOld + 1;
+			break;
+		}
+		case INPUT: {
+			int tmp1, tmp2;
+			detcoorv(memory[cell + 2], &tmp1, &tmp2);
+			switch (memory[cell + 1]) {
+				case STDI: {
+					scanf("%d", &reg[tmp1][tmp2]);
+					cell += 2;
+					break;
+				}
+				case STDC: {
+					scanf("%c", &reg[tmp1][tmp2]);
+					cell += 2;
+					break;
+				}
+				case ACC: {
+					scanf("%d", &acc);
+					cell++;
+					break;
+				}
+				case CACC: {
+					scanf("%c", &acc);
+					cell++;
+					break;
+				}
+			}
 			break;
 		}
 		}

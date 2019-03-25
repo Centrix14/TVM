@@ -93,6 +93,10 @@ void ncpGen() {
 					fprintf(code, "%d %d ", PUT, ACC);
 					i++;
 				}
+				else if (memory[i + 1] == CACC) {
+					fprintf(code, "%d %d ", PUT, CACC);
+					i++;
+				}
 				break;
 			}
 			case RESTART: {

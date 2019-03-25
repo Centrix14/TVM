@@ -53,7 +53,8 @@ enum commands { /* Список комманд / List of commands */
 	ACCADD, /* Увиличение аккумулятора [14] */
 	ACCSUBT, /* Уменьшение аккумулятора [15] */
 	CMP, /* Сравнения значений в регистрах [16] */
-	GOBACK /* [17] */
+	GOBACK, /* [17] */
+	INPUT
 };
 
 enum flags { /* Список флагов / List of flags */
@@ -63,7 +64,8 @@ enum flags { /* Список флагов / List of flags */
 	CWR, /* Char Without Register */
 	VWR, /* Value Without Register */
 	ALL, /* Флаг для _CLEAR / The _CLEAR flag for */
-	ACC /* Флаг для взаимодействия с аккумулятором */
+	ACC, /* Флаг для вывода значения аккумулятора как числа */
+	CACC /* Флаг для вывода значения аккумулятора как символа */
 };
 
 enum Regs { /* Список всех регистров / List of all registers */
