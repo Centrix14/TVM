@@ -1,0 +1,25 @@
+*
+This example demonstrates the creation and use of procedures in the language of nom. 
+A procedure is a function that does not return a value. 
+Procedures in nom are implemented through directives unconditional branch (.jump), the mark creation directive (.point) and the return directive (.goback).
+*
+
+*
+The syntax of the create procedure:
+
+.point Procedure_Number
+	The body of the procedure / code
+.goback
+*
+
+.point 1 * create a label *
+put _cwr 65 * The procedure code can be located here. In our case, this code displays the capital letter A. *
+.goback * Come back *
+
+.main * Programs start *
+
+.jump 1 1 * Call procedure number 1. The second 1 says that the transition will be made if instead of the second 1 write 0 then the code will not work! *
+
+put _cwr 32 * Display a space *
+put _cwr 66 * Display the capital letter B *
+.end * End of program *
