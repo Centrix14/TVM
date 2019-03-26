@@ -5,7 +5,7 @@
 
 /*
 nom compiler v0.1 BETA
-23.03.2019
+25.03.2019
 by Centrix
 */
 
@@ -14,11 +14,11 @@ by Centrix
 #define ISCOM -3
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
-"add", "subt", "cmp", ".goback", ".end", "_stdi","_stda", "_stdc", "_cwr", "_vwr", "_all", "_acc", "_cacc"};
-int values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 3070, 1, 2, 3, 4, 5, 6, 7, 8};
+"add", "subt", "cmp", ".goback", ".end", "input", "mult", "_stdi", "_stda", "_stdc", "_cwr", "_vwr", "_all", "_acc", "_cacc"};
+int values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 3070, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8};
 int code[1024];
 int cursor = 0;
-int kwcount = 27;
+int kwcount = 29;
 int codelen = 0;
 int com = 0;
 
@@ -88,5 +88,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	perror("Errors");
+	fclose(resource);
 	return 0;
 }

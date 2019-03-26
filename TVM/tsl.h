@@ -54,7 +54,8 @@ enum commands { /* Список комманд / List of commands */
 	ACCSUBT, /* Уменьшение аккумулятора [15] */
 	CMP, /* Сравнения значений в регистрах [16] */
 	GOBACK, /* [17] */
-	INPUT
+	INPUT,
+	ACCMULT
 };
 
 enum flags { /* Список флагов / List of flags */

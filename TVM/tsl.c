@@ -87,7 +87,7 @@ void memInter() {
 				detcoorv(memory[cell + 2], &r1x, &r1y);
 				detcoorv(memory[cell + 3], &r2x, &r2y);
 				reg[r2x][r2y] = reg[r1x][r1y];
-				cell++;
+				cell += 3;
 			}
 			break;
 		}
@@ -128,12 +128,12 @@ void memInter() {
 				break;
 			}
 			case ACC: {
-				printf("%d", acc);
+				printf("%d ", acc);
 				cell++;
 				break;
 			}
 			case CACC: {
-				printf("%c", acc);
+				printf("%c ", acc);
 				cell++;
 				break;
 			}
@@ -234,6 +234,11 @@ void memInter() {
 					break;
 				}
 			}
+			break;
+		}
+		case ACCMULT: {
+			acc *= memory[cell + 1];
+			cell++;
 			break;
 		}
 		}
