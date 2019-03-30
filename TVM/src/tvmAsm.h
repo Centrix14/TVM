@@ -2,9 +2,9 @@
 #define TVMASM_H_INCLUDED
 
 /*
-tvmAsm.h v0.3.6
+tvmAsm.h v0.3.7
 Заголовочный файл ассемблера TVM / TVM assembler header file
-27.03.2019
+30.03.2019
 by Centrix
 */
 

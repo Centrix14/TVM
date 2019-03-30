@@ -2,9 +2,9 @@
 #include "tsl.h"
 
 /*
-TvmStandartLib v0.3.6
+TvmStandartLib v0.3.7
 Главная библиотека TVM
-27.03.2019
+30.03.2019
 by Centrix
 */
 
@@ -105,10 +105,33 @@ void memInter() {
 			break;
 		}
 		case GJP: {
-			if (memory[cell + 1] != nil && memory[cell + 2] > nil) {
-				cellOld = cell;
-				cell = jump(memory[cell + 1]);
-				--cell;
+			if (memory[cell + 1] != nil) {
+				switch (memory[cell + 1]) {
+					case STDI: {
+						cellOld = cell;
+						cell = jump(memory[cell + 2]);
+						--cell;
+						break;
+					}
+					case STDA: {
+						int tmp1, tmp2;
+						detcoorv(memory[cell + 2], &tmp1, &tmp2);
+						if (reg[tmp1][tmp2] > nil) {
+							cellOld = cell;
+							cell = jump(memory[cell + 3]);
+							--cell;
+						}
+						break;
+					}
+					case ACC: {
+						if (acc > nil) {
+							cellOld = cell;
+							cell = jump(memory[cell + 2]);
+							--cell;
+						}
+						break;
+					}
+				}
 			}
 			break;
 		}
