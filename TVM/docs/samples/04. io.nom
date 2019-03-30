@@ -1,0 +1,9 @@
+*
+This example demonstrates the use of put & input
+*
+
+.main * Programs start *
+input _stdc 10 * Enter a character in the zero cell of the first register *
+put _cwr 10 * Go to a new line *
+put _stdc 10 * Display the contents of the zero cell of the first case as a symbol on the screen *
+.end * End of program *

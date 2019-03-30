@@ -1,0 +1,21 @@
+* And this example will show you the use of several procedures in the program, as well as opportunities .jump + _acc. *
+
+.point 1 * The first procedure *
+add _stda 10
+subt _stda 11
+.goback
+
+.point 2 * The second procedure *
+put _cwr 65
+.goback
+
+.main
+crg _stda 10
+prc _stdi 11
+
+crg _stda 11
+prc _stdi 10
+
+.jump _stdi 1
+.jump _acc 2 * Procedure call 2, as transition conditions, we use the value of the accumulator *
+.end
