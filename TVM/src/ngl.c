@@ -2,9 +2,9 @@
 #include "tsl.h"
 
 /*
-NcpGenLib.c v0.3.7
+NcpGenLib.c v0.3.8
 Создание .ncp файлов
-30.03.2019
+31.03.2019
 by Centrix
 */
 

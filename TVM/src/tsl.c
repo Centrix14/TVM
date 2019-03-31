@@ -2,15 +2,15 @@
 #include "tsl.h"
 
 /*
-TvmStandartLib v0.3.7
+TvmStandartLib v0.3.8
 Главная библиотека TVM
-30.03.2019
+31.03.2019
 by Centrix
 */
 
 int jump(int num) {
 	for (int i = 0; i < MEMSIZE-1; i++) {
-		if (memory[i] == num) {
+		if (memory[i] == JPT && memory[i+1] == num) {
 			return i;
 		}
 	}
@@ -251,10 +251,19 @@ void memInter() {
 					break;
 				}
 				case STDA: {
+					int val1, val2, val3, val4;
+					int ansX, ansY;
+					detcoorv(memory[cell + 2], &val1, &val2);
+					detcoorv(memory[cell + 3], &val3, &val4);
+					detcoorv(memory[cell + 4], &ansX, &ansY);
+					reg[ansX][ansY] = reg[val1][val2] - reg[val3][val4];
+					cell += 4;
+					break;
+				}
+				case ACC: {
 					int val1 = memory[cell + 2], val2 = memory[cell + 3];
 					int ansX, ansY;
-					detcoorv(memory[cell + 4], &ansX, &ansY);
-					reg[ansX][ansY] = val1 - val2;
+					acc = val1 - val2;
 					cell += 4;
 					break;
 				}
@@ -322,6 +331,28 @@ void memInter() {
 				case VWR: {
 					acc /= memory[cell + 2];
 					cell += 2;
+					break;
+				}
+			}
+		}
+		case ELSE: {
+			switch (memory[cell + 1]) {
+				case STDA: {
+					int tmp1, tmp2;
+					detcoorv(memory[cell + 2], &tmp1, &tmp2);
+					if (reg[tmp1][tmp2] < nil) {
+						cellOld = cell;
+						cell = jump(memory[cell + 3]);
+						--cell;
+					}
+					break;
+				}
+				case ACC: {
+					if (acc < nil) {
+						cellOld = cell;
+						cell = jump(memory[cell + 2]);
+						--cell;
+					}
 					break;
 				}
 			}

@@ -4,9 +4,9 @@
 #include <stdio.h>
 
 /*
-tsl.h v0.3.7
+tsl.h v0.3.8
 Объявляет ресурсы для tsl.c
-30.03.2019
+31.03.2019
 by Centrix
 */
 
@@ -21,7 +21,7 @@ unsigned int cellOld;
 unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
-unsigned int acc; /* Аккумулятор / Accumularor */
+int acc; /* Аккумулятор / Accumularor */
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -56,7 +56,8 @@ enum commands { /* Список комманд / List of commands */
 	GOBACK, /* Возвращает интерпретатор в место вызова процедуры [17] */
 	INPUT, /*  Простой ввод [18] */
 	ACCMULT, /* Умножение аккумулятора [19] */
-	ACCDIV /* Деление [20] */
+	ACCDIV, /* Деление [20] */
+	ELSE
 };
 
 enum flags { /* Список флагов / List of flags */
