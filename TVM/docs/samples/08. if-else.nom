@@ -1,0 +1,27 @@
+* In this example, we will learn how to use if / else branching. *
+
+.point 1 * If A > B then this branch will be executed *
+put _cwr 65
+put _cwr 32
+put _cwr 62
+put _cwr 32
+put _cwr 66
+.goback
+
+.point 2 * If A < B then this branch will be executed. *
+put _cwr 66
+put _cwr 32
+put _cwr 60
+put _cwr 32
+put _cwr 65
+.goback
+
+.main
+
+add _vwr 10 * Change the value of the accumulator 10 (A) *
+subt _vwr 11 * Subtract from battery 11 (B) *
+
+.jump _acc 1 * Will execute if A > B *
+.else _acc 2 * Will execute if A < B *
+
+.end
