@@ -14,16 +14,18 @@ int jump(int num) {
 			return i;
 		}
 	}
-	return 0;
+	printf("Critical error: the %d mark is not detected", num);
 }
 
 int gotoMain() {
 	unsigned int i = 0;
 	acc = 0;
-	while (memory[i] != MAIN) {
-		i++;
+	for (int i = 0; i < MEMSIZE-1; i++) {
+		if (memory[i] == MAIN) {
+			return i;
+		}
 	}
-	return i;
+	printf("Critical error: directive not found .main");
 }
 
 void detcoor(int rtype) {
