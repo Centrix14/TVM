@@ -1,0 +1,8 @@
+* In this lesson, we'll look at using (prc) to copy values from one register to another *
+
+.main
+crg _stda 10 * Select the cell with the address 10 *
+prc _stdi 123 * Put the value 123 in the selected cell *
+prc _stda 10 11 * Copy the value of the cell with the address 10 to the cell with the address 11 *
+put _stdi 11 * Display the value of the cell with the address 11 on the screen *
+.end
