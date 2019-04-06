@@ -5,8 +5,8 @@
 #include "tsl.h"
 
 /*
-nom compiler v0.4 BETA
-31.03.2019
+nom compiler v0.5 BETA
+06.03.2019
 by Centrix
 */
 
@@ -15,9 +15,10 @@ by Centrix
 #define ISCOM -3
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
-"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", ".else", "_stdi", "_stda", "_stdc", "_cwr", "_vwr", "_all", "_acc", "_cacc"};
+"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", ".else", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
+"_cwr", "_vwr", "_all", "_acc", "_cacc"};
 int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, COM, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
-INPUT, ACCMULT, ACCDIV, ELSE, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC};
+INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC};
 int buff[MEMSIZE];
 int cursor = 0;
 int kwcount = 31;

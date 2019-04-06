@@ -2,11 +2,12 @@
 #define TSL_H_INCLUDED
 
 #include <stdio.h>
+#include "stackLib.h"
 
 /*
-tsl.h v0.3.8
-Объявляет ресурсы для tsl.c
-31.03.2019
+tsl.h v0.3.9
+TVM resource library
+06.04.2019
 by Centrix
 */
 

@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include "tsl.h"
+#include "stackLib.h"
 
 /*
-TvmStandartLib v0.3.8
-Главная библиотека TVM
-31.03.2019
+TvmStandartLib v0.3.9
+Basic TVM library
+06.04.2019
 by Centrix
 */
 
@@ -358,6 +359,35 @@ void memInter() {
 					break;
 				}
 			}
+		}
+		case PUSH: {
+			stack[STACKSIZE-busyNum++] = memory[cell+1];
+			break;
+		}
+		case EJECT: {
+			stack[memory[cell++]] = nil;
+			busyNum--;
+			break;
+		}
+		case SUM: {
+			int sum = 0;
+			for (int i = 0; i < STACKSIZE; i++) {
+				sum += stack[STACKSIZE-i];
+				stack[STACKSIZE-i] = nil;
+			}
+			stack[STACKSIZE] = sum;
+			break;
+		}
+		case OUTPUT: {
+			/*for (int i = 0; i < STACKSIZE; i++) {
+				printf("%d\n", stack[STACKSIZE-i]);
+			}*/
+			for (int i = 0; i < busyNum; i++) {
+				if (stack[STACKSIZE-i] != nil) {
+					printf("%d\n", stack[STACKSIZE-i]);
+				}
+			}
+			break;
 		}
 		}
 		cell++;

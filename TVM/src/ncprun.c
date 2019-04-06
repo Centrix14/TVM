@@ -5,8 +5,8 @@
 
 /*
 ncprun.c v0.3.8
-Запуск .ncp файлов / NCP file launcher
-31.03.2019
+NCP file launcher
+06.03.2019
 by Centrix
 */
 
