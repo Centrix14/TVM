@@ -379,12 +379,26 @@ void memInter() {
 			break;
 		}
 		case OUTPUT: {
-			/*for (int i = 0; i < STACKSIZE; i++) {
-				printf("%d\n", stack[STACKSIZE-i]);
-			}*/
 			for (int i = 0; i < busyNum; i++) {
 				if (stack[STACKSIZE-i] != nil) {
-					printf("%d\n", stack[STACKSIZE-i]);
+					switch (memory[cell+1]) {
+						case NUM: {
+							printf("%d ", stack[STACKSIZE-i]);
+							break;
+						}
+						case SYM: {
+							printf("%c ", stack[STACKSIZE-i]);
+							break;
+						}
+						case NUMWS: {
+							printf("%d", stack[STACKSIZE-i]);
+							break;
+						}
+						case SYMWS: {
+							printf("%c", stack[STACKSIZE-i]);;
+							break;
+						}
+					}
 				}
 			}
 			break;

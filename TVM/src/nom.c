@@ -16,12 +16,12 @@ by Centrix
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
 "add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", ".else", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
-"_cwr", "_vwr", "_all", "_acc", "_cacc"};
+"_cwr", "_vwr", "_all", "_acc", "_cacc", "_num", "_sym", "_numws", "_symws"};
 int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, COM, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
-INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC};
+INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC, NUM, SYM, NUMWS, SYMWS};
 int buff[MEMSIZE];
 int cursor = 0;
-int kwcount = 31;
+int kwcount = 40;
 int codelen = 0;
 int com = 0;
 
