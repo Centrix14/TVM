@@ -1,0 +1,7 @@
+* In this tutorial, we'll look at using the stack *
+
+.main
+push 65 * Put the value 65 on the stack *
+write _num * Print the stack value as a number on the screen with a space *
+write _sym * Print the value of the stack as a symbol on the screen with a space *
+.end

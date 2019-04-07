@@ -1,0 +1,10 @@
+* This demonstrates how to summarize the values of the entire stack and extract the values from it *
+
+.main
+push 2 * Put the value 2 on the stack *
+push 3 * Put the value 3 on the stack *
+write _num * Display the stack value as a number on the screen *
+sum * Summarize the value of the stack *
+eject 0 * Extract the element with index 0 from the stack *
+write _num * Display the stack value as a number on the screen *
+.end
