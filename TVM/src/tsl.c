@@ -365,7 +365,7 @@ void memInter() {
 			break;
 		}
 		case EJECT: {
-			stack[memory[cell++]] = nil;
+			stack[STACKSIZE-memory[cell++]] = nil;
 			busyNum--;
 			break;
 		}
