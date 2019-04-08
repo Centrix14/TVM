@@ -27,9 +27,7 @@ enum moves { /* Stack commands */
 enum params { /* The parameters applicable to the command stack */
 	NUM = 300,
 	ADDR,
-	SYM,
-	NUMWS,
-	SYMWS
+	SYM
 };
 
 #endif

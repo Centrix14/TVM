@@ -361,11 +361,11 @@ void memInter() {
 			}
 		}
 		case PUSH: {
-			stack[STACKSIZE-busyNum++] = memory[cell+1];
+			stack[STACKSIZE-(busyNum++)] = memory[cell+1];
 			break;
 		}
 		case EJECT: {
-			stack[STACKSIZE-memory[cell++]] = nil;
+			stack[STACKSIZE-busyNum] = nil;
 			busyNum--;
 			break;
 		}
@@ -379,26 +379,14 @@ void memInter() {
 			break;
 		}
 		case OUTPUT: {
-			for (int i = 0; i < busyNum; i++) {
-				if (stack[STACKSIZE-i] != nil) {
-					switch (memory[cell+1]) {
-						case NUM: {
-							printf("%d ", stack[STACKSIZE-i]);
-							break;
-						}
-						case SYM: {
-							printf("%c ", stack[STACKSIZE-i]);
-							break;
-						}
-						case NUMWS: {
-							printf("%d", stack[STACKSIZE-i]);
-							break;
-						}
-						case SYMWS: {
-							printf("%c", stack[STACKSIZE-i]);;
-							break;
-						}
-					}
+			switch (memory[cell+1]) {
+				case NUM: {
+					printf("%d", stack[STACKSIZE-(busyNum-1)]);
+					break;
+				}
+				case SYM: {
+					printf("%c", stack[STACKSIZE-(busyNum-1)]);
+					break;
 				}
 			}
 			break;
