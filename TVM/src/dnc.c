@@ -3,6 +3,12 @@
 #include <string.h>
 #include "tsl.h"
 
+/*
+dis num code v0.1
+10.04.2019
+by Centrix
+*/
+
 #define BREAK -3070
 
 int find(int code) {
