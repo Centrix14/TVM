@@ -5,14 +5,17 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.3.9
+tsl.h v0.3.10
 TVM resource library
-06.04.2019
+10.04.2019
 by Centrix
 */
 
 #define MEMSIZE 1024 /* Размер памяти / Memory size */
 #define end 3070 /* Указатель на конец программы / A pointer to the end of the program */
+#define KEYERR -1
+#define ISINT -2
+#define ISCOM -3
 
 unsigned int memory[MEMSIZE];
 unsigned int memIndx; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is
@@ -23,6 +26,7 @@ unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
 int acc; /* Аккумулятор / Accumularor */
+int kwcount = 40;
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -71,5 +75,11 @@ enum flags { /* Список флагов / List of flags */
 	ACC, /* Флаг для вывода значения аккумулятора как числа */
 	CACC /* Флаг для вывода значения аккумулятора как символа */
 };
+
+char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
+"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", ".else", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
+"_cwr", "_vwr", "_all", "_acc", "_cacc", "_num", "_sym"};
+int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, COM, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
+INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC, NUM, SYM};
 
 #endif
