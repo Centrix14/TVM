@@ -5,9 +5,9 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.3.10
+tsl.h v0.3.11
 TVM resource library
-10.04.2019
+13.04.2019
 by Centrix
 */
 
@@ -26,7 +26,7 @@ unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
 int acc; /* Аккумулятор / Accumularor */
-int kwcount = 40;
+int kwcount = 41;
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -73,13 +73,14 @@ enum flags { /* Список флагов / List of flags */
 	VWR, /* Value Without Register */
 	ALL, /* Флаг для _CLEAR / The _CLEAR flag for */
 	ACC, /* Флаг для вывода значения аккумулятора как числа */
-	CACC /* Флаг для вывода значения аккумулятора как символа */
+	CACC, /* Флаг для вывода значения аккумулятора как символа */
+	STACK
 };
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
 "add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", ".else", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
-"_cwr", "_vwr", "_all", "_acc", "_cacc", "_num", "_sym"};
+"_cwr", "_vwr", "_all", "_acc", "_cacc", "_num", "_sym", "_stack"};
 int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, COM, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
-INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC, NUM, SYM};
+INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC, NUM, SYM, STACK};
 
 #endif

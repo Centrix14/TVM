@@ -5,8 +5,8 @@
 #include "tsl.h"
 
 /*
-nom compiler v0.6 BETA
-10.03.2019
+nom compiler v0.7 BETA
+13.04.2019
 by Centrix
 */
 

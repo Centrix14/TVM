@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.3.9
+TvmStandartLib v0.3.11
 Basic TVM library
-06.04.2019
+13.04.2019
 by Centrix
 */
 
@@ -102,6 +102,18 @@ void memInter() {
 					detcoorv(memory[cell + 3], &r2x, &r2y);
 					reg[r2x][r2y] = reg[r1x][r1y];
 					cell += 3;
+					break;
+				}
+				case ACC: {
+					if (memory[cell + 2] == STACK) {
+						acc = stack[STACKSIZE-busyNum+1];
+					}
+					break;
+				}
+				case STACK: {
+					if (memory[cell + 2] == ACC) {
+						stack[STACKSIZE-busyNum+1] = acc;
+					} 
 					break;
 				}
 			}
