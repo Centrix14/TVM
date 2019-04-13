@@ -4,8 +4,8 @@
 #include "tsl.h"
 
 /*
-dis num code v0.1 BETA
-10.04.2019
+dis num code v0.2 BETA
+13.04.2019
 by Centrix
 */
 
