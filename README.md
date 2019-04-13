@@ -19,3 +19,6 @@ Use build to compile the
 or otherwise, if the application does not fit your platform, use a different method:
 
 > gcc nom.c -o nom.exe gcc ncprun.c -o run.exe
+
+## I need help! 
+If you are not difficult then you could help in editing the documentation in English, or help in finding problems and bugs, I will be immensely grateful to you!
