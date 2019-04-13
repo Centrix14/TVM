@@ -15,7 +15,8 @@ int jump(int num) {
 			return i;
 		}
 	}
-	printf("Critical error: the %d mark is not detected", num);
+	printf("Warning: the %d mark is not detected", num);
+	return 1;
 }
 
 int gotoMain() {
@@ -27,6 +28,7 @@ int gotoMain() {
 		}
 	}
 	printf("Critical error: directive not found .main");
+	return 1;
 }
 
 void detcoor(int rtype) {
@@ -51,7 +53,7 @@ void memInter() {
 			cell = gotoMain();
 		}
 		
-		switch (memory[cell])
+		switch (memory[cell]) 
 		{
 		case CRG: {
 			switch (memory[cell + 1]) {
