@@ -12,6 +12,7 @@ by Centrix
 int jump(int num) {
 	for (int i = 0; i < MEMSIZE-1; i++) {
 		if (memory[i] == JPT && memory[i+1] == num) {
+			printf("jpt\n");
 			return i;
 		}
 	}
@@ -141,10 +142,11 @@ void memInter() {
 						break;
 					}
 					case ACC: {
-						if (acc > nil) {
+						if (acc > nul) {
 							cellOld = cell;
 							cell = jump(memory[cell + 2]);
 							--cell;
+							printf("jump - %d\n", acc > nil);
 						}
 						break;
 					}
@@ -279,9 +281,9 @@ void memInter() {
 				}
 				case ACC: {
 					int val1 = memory[cell + 2], val2 = memory[cell + 3];
-					int ansX, ansY;
-					acc = val1 - val2;
-					cell += 4;
+					acc += val1 - val2;
+					cell += 3;
+					printf("cmp - %d\n", acc);
 					break;
 				}
 			}

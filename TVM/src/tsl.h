@@ -26,6 +26,7 @@ unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
 int acc; /* Аккумулятор / Accumularor */
+const unsigned int nul = 0;
 int kwcount = 41;
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
