@@ -15,7 +15,7 @@ int jump(int num) {
 			return i;
 		}
 	}
-	printf("Warning: the %d mark is not detected", num);
+	printf("Warning: the %d mark is not detected\n", num);
 	return 1;
 }
 
@@ -27,7 +27,7 @@ int gotoMain() {
 			return i;
 		}
 	}
-	printf("Critical error: directive not found .main");
+	printf("Critical error: directive not found .main\n");
 	return 1;
 }
 
