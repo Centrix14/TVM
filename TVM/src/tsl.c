@@ -3,11 +3,13 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.3.11
+TvmStandartLib v0.4
 Basic TVM library
-13.04.2019
+22.04.2019
 by Centrix
 */
+
+#define JMP_PROC {cellOld = cell;} {cell = jump(memory[cell + 3]);} {--cell;}
 
 int jump(int num) {
 	for (int i = 0; i < MEMSIZE-1; i++) {
@@ -122,32 +124,61 @@ void memInter() {
 			break;
 		}
 		case GJP: {
-			if (memory[cell + 1] != nil) {
-				switch (memory[cell + 1]) {
-					case STDI: {
-						cellOld = cell;
-						cell = jump(memory[cell + 2]);
-						--cell;
-						break;
+			int value = 0;
+
+			switch (memory[cell + 2]) {
+				case STACK: {
+					value = stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				case ACC: {
+					value = acc;
+					break;
+				}
+				default: {
+					int x, y;
+					detcoorv(memory[cell + 2], &x, &y);
+					value = reg[x][y];
+					break;
+				}
+			}
+
+			switch (memory[cell + 1]) {
+				case GZ: {
+					if (value > nil) {
+						JMP_PROC
 					}
-					case STDA: {
-						int tmp1, tmp2;
-						detcoorv(memory[cell + 2], &tmp1, &tmp2);
-						if (reg[tmp1][tmp2] > nil) {
-							cellOld = cell;
-							cell = jump(memory[cell + 3]);
-							--cell;
-						}
-						break;
+					break;
+				}
+				case GEZ: {
+					if (value >= nil) {
+						JMP_PROC
 					}
-					case ACC: {
-						if (acc > nul) {
-							cellOld = cell;
-							cell = jump(memory[cell + 2]);
-							--cell;
-						}
-						break;
+					break;
+				}
+				case EZ: {
+					if (value == nil) {
+						JMP_PROC
 					}
+					break;
+				}
+				case LZ: {
+					if (value < nil) {
+						JMP_PROC
+					}
+					break;
+				}
+				case LEZ: {
+					if (value <= nil) {
+						JMP_PROC
+					}
+					break;
+				}
+				case INF: {
+					cellOld = cell;
+					cell = jump(memory[cell + 2]);
+					--cell;
+					break;
 				}
 			}
 			break;
@@ -258,28 +289,30 @@ void memInter() {
 			break;
 		}
 		case CMP: {
+			int r1X, r1Y, r2X, r2Y;
+			int val1, val2;
+
+			detcoorv(memory[cell + 2], &r1X, &r1Y);
+			detcoorv(memory[cell + 3], &r2X, &r2Y);
+
+			val1 = reg[r1X][r1Y];
+			val2 = reg[r2X][r2Y];
+
 			switch (memory[cell + 1]) {
-				case STDI: {
-					int val1 = memory[cell + 2], val2 = memory[cell + 3];
-					int ansX, ansY;
-					detcoorv(memory[cell + 4], &ansX, &ansY);
-					reg[ansX][ansY] = val1 - val2;
-					cell += 4;
-					break;
-				}
-				case STDA: {
-					int val1, val2, val3, val4;
-					int ansX, ansY;
-					detcoorv(memory[cell + 2], &val1, &val2);
-					detcoorv(memory[cell + 3], &val3, &val4);
-					detcoorv(memory[cell + 4], &ansX, &ansY);
-					reg[ansX][ansY] = reg[val1][val2] - reg[val3][val4];
-					cell += 4;
-					break;
-				}
 				case ACC: {
-					int val1 = memory[cell + 2], val2 = memory[cell + 3];
-					acc += val1 - val2;
+					acc = val1 - val2;
+					cell += 3;
+					break;
+				}
+				case STACK: {
+					stack[STACKSIZE-busyNum+1] = val1 - val2;
+					cell += 3;
+					break;
+				}
+				default: {
+					int ansX, ansY;
+					detcoorv(memory[cell + 1], &ansX, &ansY);
+					reg[ansX][ansY] = val1 - val2;
 					cell += 3;
 					break;
 				}
@@ -347,28 +380,6 @@ void memInter() {
 				case VWR: {
 					acc /= memory[cell + 2];
 					cell += 2;
-					break;
-				}
-			}
-		}
-		case ELSE: {
-			switch (memory[cell + 1]) {
-				case STDA: {
-					int tmp1, tmp2;
-					detcoorv(memory[cell + 2], &tmp1, &tmp2);
-					if (reg[tmp1][tmp2] < nil) {
-						cellOld = cell;
-						cell = jump(memory[cell + 3]);
-						--cell;
-					}
-					break;
-				}
-				case ACC: {
-					if (acc < nil) {
-						cellOld = cell;
-						cell = jump(memory[cell + 2]);
-						--cell;
-					}
 					break;
 				}
 			}

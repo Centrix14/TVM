@@ -5,9 +5,9 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.3.11
+tsl.h v0.4
 TVM resource library
-13.04.2019
+22.04.2019
 by Centrix
 */
 
@@ -17,17 +17,16 @@ by Centrix
 #define ISINT -2
 #define ISCOM -3
 
-unsigned int memory[MEMSIZE];
+unsigned int memory[MEMSIZE]; /* The memory of the machine */
 unsigned int memIndx; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is
 performed */
 unsigned int cell; /* Указатель на читаемую ячейку памяти  / Pointer to a readable memory cell */
-unsigned int cellOld;
+unsigned int cellOld; /* The cell is read prior to this */
 unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
 int acc; /* Аккумулятор / Accumularor */
-const unsigned int nul = 0;
-int kwcount = 41;
+int kwcount = 43; /* Number of keywords and flags */
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -62,8 +61,7 @@ enum commands { /* Список комманд / List of commands */
 	GOBACK, /* Возвращает интерпретатор в место вызова процедуры [17] */
 	INPUT, /*  Простой ввод [18] */
 	ACCMULT, /* Умножение аккумулятора [19] */
-	ACCDIV, /* Деление [20] */
-	ELSE
+	ACCDIV /* Деление [20] */
 };
 
 enum flags { /* Список флагов / List of flags */
@@ -78,10 +76,20 @@ enum flags { /* Список флагов / List of flags */
 	STACK
 };
 
+enum ops {
+	GZ = 400,
+	GEZ,
+	EZ,
+	LZ,
+	LEZ,
+	INF
+};
+
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
-"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", ".else", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
-"_cwr", "_vwr", "_all", "_acc", "_cacc", "_num", "_sym", "_stack"};
+"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
+"_cwr", "_vwr", "_all", "_acc", "_cacc", "_num", "_sym", "_stack", ">", ">=", "=", "<", "<=", "~"};
 int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, COM, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
-INPUT, ACCMULT, ACCDIV, ELSE, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC, NUM, SYM, STACK};
+INPUT, ACCMULT, ACCDIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, CACC, NUM, SYM, STACK, GZ, GEZ, EZ, LZ,\
+LEZ, INF};
 
 #endif
