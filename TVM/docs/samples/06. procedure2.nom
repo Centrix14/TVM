@@ -1,14 +1,15 @@
 * 
-In this example, we will consider the application of (.jump) and (_stda), as well as the unusual syntax associated with such a construction.
-If you need to take a value from the register as a condition to move to the label, you can use (.jump) and flag (_stda), solidaudit syntax: .jump _stda [register address] [label number]
+If you want to take a value from the register as a value, use the following syntax:
+.jump [op1] [reg_num] [mark_num]
+where op1 is the jump operator, reg_num is the register address, and mark_num is the procedure number
 *
-
-.point 1 * Create a mark *
-put _cwr 65 * Mark code *
-.goback * Return back *
 
 .main * Programs start *
 crg _stda 10 * The choice of register *
 prc _stdi 123 * Changing the register value *
-.jump _stda 10 1 * The transition to the label 1 given the value of the register *
+.jump > 10 1 * The transition to the label 1 given the value of the register *
 .end * End of program *
+
+.point 1 * Create a mark *
+put _cwr 65 * Mark code *
+.goback * Return back *
