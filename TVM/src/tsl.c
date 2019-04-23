@@ -14,7 +14,7 @@ by Centrix
 int jump(int num) {
 	for (int i = 0; i < MEMSIZE-1; i++) {
 		if (memory[i] == JPT && memory[i+1] == num) {
-			return i;
+			return i+1;
 		}
 	}
 	printf("Warning: the %d mark is not detected\n", num);
@@ -180,6 +180,7 @@ void memInter() {
 					--cell;
 					break;
 				}
+				cell--;
 			}
 			break;
 		}
