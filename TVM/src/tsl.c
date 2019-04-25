@@ -325,10 +325,11 @@ void memInter() {
 			break;
 		}
 		case INPUT: {
+			int* addr;
 			int tmp1, tmp2;
-			detcoorv(memory[cell + 2], &tmp1, &tmp2);
+			detcoorv(memory[cell + 1], &tmp1, &tmp2);
 
-			switch (memory[cell + 1]) {
+			/*switch (memory[cell + 1]) {
 				case STDI: {
 					scanf("%d", &reg[tmp1][tmp2]);
 					cell += 2;
@@ -347,6 +348,31 @@ void memInter() {
 				case CACC: {
 					scanf("%c", &acc);
 					cell++;
+					break;
+				}
+			}*/
+			switch (memory[cell + 1]) {
+				case ACC: {
+					addr = &acc;
+					break;
+				}
+				case STACK: {
+					addr = &stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				default: {
+					addr = &reg[tmp1][tmp2];
+					break;
+				}
+			}
+
+			switch (memory[cell + 2]) {
+				case STDI: {
+					scanf("%d", addr);
+					break;
+				}
+				case STDC: {
+					scanf("%c", addr);
 					break;
 				}
 			}
