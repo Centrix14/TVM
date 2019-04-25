@@ -11,6 +11,11 @@ by Centrix
 
 #define JMP_PROC {cellOld = cell;} {cell = jump(memory[cell + 3]);} {--cell;}
 
+/*
+Rus: Инкрементирование производится потому что если процедура располагается в 0 ячейке то не происходил переход к .main
+En: The increment is performed because if the procedure is located in the 0 cell then there was no transition to .main
+*/
+
 int jump(int num) {
 	for (int i = 0; i < MEMSIZE-1; i++) {
 		if (memory[i] == JPT && memory[i+1] == num) {
