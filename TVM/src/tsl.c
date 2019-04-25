@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.4
+TvmStandartLib v0.4.1
 Basic TVM library
-22.04.2019
+25.04.2019
 by Centrix
 */
 
@@ -329,28 +329,6 @@ void memInter() {
 			int tmp1, tmp2;
 			detcoorv(memory[cell + 1], &tmp1, &tmp2);
 
-			/*switch (memory[cell + 1]) {
-				case STDI: {
-					scanf("%d", &reg[tmp1][tmp2]);
-					cell += 2;
-					break;
-				}
-				case STDC: {
-					scanf("%c", &reg[tmp1][tmp2]);
-					cell += 2;
-					break;
-				}
-				case ACC: {
-					scanf("%d", &acc);
-					cell++;
-					break;
-				}
-				case CACC: {
-					scanf("%c", &acc);
-					cell++;
-					break;
-				}
-			}*/
 			switch (memory[cell + 1]) {
 				case ACC: {
 					addr = &acc;
