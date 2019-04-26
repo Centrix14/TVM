@@ -16,10 +16,10 @@ The syntax of the create procedure:
 
 .jump ~ 1 * Call procedure number 1. The ~ operator means that there is an unconditional transition *
 
-put _cwr 32 * Display a space *
-put _cwr 66 * Display the capital letter B *
+put 32 _cwr * Display a space *
+put 66 _cwr * Display the capital letter B *
 .end * End of program *
 
 .point 1 * create a label *
-put _cwr 65 * The procedure code can be located here. In our case, this code displays the capital letter A. *
+put 65 _cwr * The procedure code can be located here. In our case, this code displays the capital letter A. *
 .goback * Come back *

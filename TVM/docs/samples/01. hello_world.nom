@@ -5,17 +5,17 @@ Since nom does not know how to operate with strings, we output the message chara
 *
 
 .main * Programs start *
-put _cwr 72 * H *
-put _cwr 101 * e *
-put _cwr 108 * l *
-put _cwr 108 * l *
-put _cwr 111 * o *
-put _cwr 32 * space *
+put 72 _cwr * H *
+put 101 _cwr * e *
+put 108 _cwr * l *
+put 108 _cwr * l *
+put 111 _cwr * o *
+put 32 _cwr * space *
 
-put _cwr 119 * w *
-put _cwr 111 * o *
-put _cwr 114 * r *
-put _cwr 108 * l *
-put _cwr 100 * d *
-put _cwr 33 * ! *
+put 119 _cwr * w *
+put 111 _cwr * o *
+put 114 _cwr * r *
+put 108 _cwr * l *
+put 100 _cwr * d *
+put 33 _cwr * ! *
 .end * End of program *

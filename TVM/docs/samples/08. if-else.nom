@@ -14,17 +14,17 @@ cmp _acc 10 11
 .end
 
 .point 1 * If A > B then this branch will be executed *
-put _cwr 65
-put _cwr 32
-put _cwr 62
-put _cwr 32
-put _cwr 66
+put 65 _cwr
+put 32 _cwr
+put 62 _cwr
+put 32 _cwr
+put 66 _cwr
 .goback
 
 .point 2 * If A < B then this branch will be executed. *
-put _cwr 65
-put _cwr 32
-put _cwr 60
-put _cwr 32
-put _cwr 66
+put 65 _cwr
+put 32 _cwr
+put 60 _cwr
+put 32 _cwr
+put 66 _cwr
 .goback

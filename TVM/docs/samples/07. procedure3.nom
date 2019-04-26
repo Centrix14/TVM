@@ -17,5 +17,5 @@ subt _stda 11
 .goback
 
 .point 2 * The second procedure *
-put _cwr 65
+put 65 _cwr
 .goback

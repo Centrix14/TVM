@@ -11,5 +11,5 @@ prc _stdi 123 * Changing the register value *
 .end * End of program *
 
 .point 1 * Create a mark *
-put _cwr 65 * Mark code *
+put 65 _cwr * Mark code *
 .goback * Return back *
