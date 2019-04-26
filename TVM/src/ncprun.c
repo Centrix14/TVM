@@ -4,9 +4,9 @@
 #include "tsl.c"
 
 /*
-ncprun.c v0.4
+ncprun.c v0.5.1
 NCP file launcher
-22.04.2019
+26.04.2019
 by Centrix
 */
 

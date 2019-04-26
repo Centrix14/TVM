@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.4.1
+TvmStandartLib v0.5.1
 Basic TVM library
-25.04.2019
+26.04.2019
 by Centrix
 */
 
@@ -191,43 +191,43 @@ void memInter() {
 		}
 		case PUT: {
 			int tmp1, tmp2;
-			detcoorv(memory[cell + 2], &tmp1, &tmp2);
+			int value = 0;
 
 			switch (memory[cell + 1]) {
-				case STDI: {
-					printf("%d", reg[tmp1][tmp2]);
-					cell += 2;
-					break;
-				}
-
-				case STDC: {
-					printf("%c", reg[tmp1][tmp2]);
-					cell += 2;
-					break;
-				}
-
-				case CWR: {
-					printf("%c", memory[cell + 2]);
-					cell += 2;
-					break;
-				}
-
-				case VWR: {
-					printf("%d", memory[cell + 2]);
-					cell += 2;
-					break;
-				}
 				case ACC: {
-					printf("%d ", acc);
-					cell++;
+					value = acc;
 					break;
 				}
-				case CACC: {
-					printf("%c ", acc);
-					cell++;
+				case STACK: {
+					value = stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				default: {
+					detcoorv(memory[cell + 1], &tmp1, &tmp2);
+					value = reg[tmp1][tmp2];
 					break;
 				}
 			}
+
+			switch (memory[cell + 2]) {
+				case STDI: {
+					printf("%d", value);
+					break;
+				}
+				case STDC: {
+					printf("%c", value);
+					break;
+				}
+				case CWR: {
+					printf("%c", memory[cell + 1]);
+					break;
+				}
+				case VWR: {
+					printf("%d", memory[cell + 1]);
+					break;
+				}
+			}
+			cell += 2;
 			break;
 		}
 		case DEB: {

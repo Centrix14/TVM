@@ -2,9 +2,9 @@
 #define STACKLIB_H_INCLUDED
 
 /* 
-stackLib.h v0.3
+stackLib.h v0.5.1
 Library for working with stack
-22.04.2019
+26.04.2019
 by Centrix
 */
 
