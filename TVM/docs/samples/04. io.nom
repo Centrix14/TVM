@@ -2,8 +2,8 @@
 This example demonstrates the use of put & input
 *
 
-.main * Programs start *
-input _stdc 10 * Enter a character in the zero cell of the first register *
+.main 
+input 10 _stdc * Enter a character from the keyboard *
 put _cwr 10 * Go to a new line *
-put _stdc 10 * Display the contents of the zero cell of the first case as a symbol on the screen *
-.end * End of program *
+put _stdc 10 * Output of the entered character *
+.end

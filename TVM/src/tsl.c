@@ -194,39 +194,39 @@ void memInter() {
 			detcoorv(memory[cell + 2], &tmp1, &tmp2);
 
 			switch (memory[cell + 1]) {
-			case STDI: {
-				printf("%d", reg[tmp1][tmp2]);
-				cell += 2;
-				break;
-			}
+				case STDI: {
+					printf("%d", reg[tmp1][tmp2]);
+					cell += 2;
+					break;
+				}
 
-			case STDC: {
-				printf("%c", reg[tmp1][tmp2]);
-				cell += 2;
-				break;
-			}
+				case STDC: {
+					printf("%c", reg[tmp1][tmp2]);
+					cell += 2;
+					break;
+				}
 
-			case CWR: {
-				printf("%c", memory[cell + 2]);
-				cell += 2;
-				break;
-			}
+				case CWR: {
+					printf("%c", memory[cell + 2]);
+					cell += 2;
+					break;
+				}
 
-			case VWR: {
-				printf("%d", memory[cell + 2]);
-				cell += 2;
-				break;
-			}
-			case ACC: {
-				printf("%d ", acc);
-				cell++;
-				break;
-			}
-			case CACC: {
-				printf("%c ", acc);
-				cell++;
-				break;
-			}
+				case VWR: {
+					printf("%d", memory[cell + 2]);
+					cell += 2;
+					break;
+				}
+				case ACC: {
+					printf("%d ", acc);
+					cell++;
+					break;
+				}
+				case CACC: {
+					printf("%c ", acc);
+					cell++;
+					break;
+				}
 			}
 			break;
 		}
@@ -359,6 +359,7 @@ void memInter() {
 					break;
 				}
 			}
+			cell += 2;
 			break;
 		}
 		case ACCMULT: {
