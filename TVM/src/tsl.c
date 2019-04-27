@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.5.1
+TvmStandartLib v0.5.2
 Basic TVM library
-26.04.2019
+27.04.2019
 by Centrix
 */
 
