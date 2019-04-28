@@ -13,9 +13,9 @@ by Centrix
 
 #define MEMSIZE 1024 /* Размер памяти / Memory size */
 #define end 3070 /* Указатель на конец программы / A pointer to the end of the program */
-#define KEYERR -1
-#define ISINT -2
-#define ISCOM -3
+#define KEYERR -1 /* Ошибка поиска / Search failed */
+#define ISINT -2 /* Найдено число / Found number */
+#define ISCOM -3 /* Найден комментарий / Comment found */
 
 unsigned int memory[MEMSIZE]; /* The memory of the machine */
 unsigned int memIndx; /* Ячейка памяти в которую ведётся запись / The memory location to which the recording is
@@ -76,12 +76,12 @@ enum flags { /* Список флагов / List of flags */
 };
 
 enum ops {
-	GZ = 400,
-	GEZ,
-	EZ,
-	LZ,
-	LEZ,
-	INF
+	GZ = 400, /* ... > 0 */
+	GEZ, /* ... >= 0 */
+	EZ, /* ... = 0 */
+	LZ, /* ... < 0 */
+	LEZ, /* ... <= 0 */
+	INF /* goto */
 };
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\

@@ -384,7 +384,7 @@ void memInter() {
 				case STDA: {
 					int tmp1, tmp2;
 					detcoorv(memory[cell + 2], &tmp1, &tmp2);
-					acc *= reg[tmp1][tmp2];
+					acc /= reg[tmp1][tmp2];
 					cell += 2;
 					break;
 				}
