@@ -16,7 +16,7 @@ int codelen = 0;
 int com = 0;
 
 int find(char* word) {
-	if (strstr(word, "*") != NULL && com == 0) { com = 1; }
+	if (strstr(word, "*") != NULL && com == 0) { com = 1; return ISCOM; }
 	else if (strstr(word, "*") != NULL && com == 1) { com = 0; return ISCOM; }
 
 	for (int i = 0; i < kwcount; i++) {
@@ -26,15 +26,15 @@ int find(char* word) {
 		else if (isdigit(word[0]) == 1) {
 			return ISINT;
 		}
-		else if (com == 1) { return ISCOM; }
 	}
+	if (com == 1) { return ISCOM; }
 	return KEYERR;
 }
 
-void install(char* word) {
+int install(char* word) {
 	int indx = find(word);
 
-	if (com == 1 && indx == ISCOM) { return; }
+	if (com == 1 && indx == ISCOM) { return ISCOM; }
 
 	if (indx >= 0) {
 		buff[cursor++] = values[indx];
@@ -42,25 +42,30 @@ void install(char* word) {
 
 	else {
 		if (indx == KEYERR) {
-			printf("Critical error: Unrecognized expression:\n%s\n", word);
+			printf("Critical error. Unrecognized expression:\n%s\ncom = %d\tindex = %d", word, com, indx);
 			exit(0);
 		}
 		else {
 			buff[cursor++] = atoi(word);
 		}
 	}
+	return 1;
 }
 
 void write(char* str, char* name) {
 	FILE* file = fopen(name, "w");
 	char* token = strtok(str, " ");
+	int res = 0;
 
 	if (file == NULL) { perror("Fail"); exit(0); }
 
 	while (token != NULL) {
-		install(token);
+		res = install(token);
 		token = strtok(NULL, " ");
-		codelen++;
+
+		if (res == 1) {
+			++codelen;
+		}
 	}
 	
 	for (int i = 0; i < codelen; i++) {
