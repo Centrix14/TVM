@@ -1,0 +1,66 @@
+* 
+nom calculator by Centrix (Artjom)
+Console input: 
+[op] (+, -, x, /) 
+[num1] (number) 
+[num2] (number)
+*
+
+.main
+crg _stda 10
+prc _stdi 43 * + *
+
+crg _stda 11
+prc _stdi 45 * - *
+
+crg _stda 12
+prc _stdi 120 * x *
+
+crg _stda 13
+prc _stdi 47 * / *
+
+input 16 _stdc * op *
+
+input 14 _stdi * num1 *
+input 15 _stdi * num2 *
+
+cmp _acc 10 16
+.jump = _acc 1 * If op is + *
+
+cmp _acc 11 16
+.jump = _acc 2 * If op is - *
+
+cmp _acc 12 16
+.jump = _acc 3 * If op is x *
+
+cmp _acc 13 16
+.jump = _acc 4 * If op is / *
+.end
+
+* + proc * 
+.point 1
+add _stda 14
+add _stda 15
+put _acc _stdi
+.goback
+
+* - proc *
+.point 2
+add _stda 14
+subt _stda 15
+put _acc _stdi
+.goback
+
+* x proc *
+.point 3
+add _stda 14
+mult _stda 15
+put _acc _stdi
+.goback
+
+* / proc *
+.point 4
+add _stda 14
+div _stda 15
+put _acc _stdi
+.goback
