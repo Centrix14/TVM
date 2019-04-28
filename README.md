@@ -12,13 +12,12 @@ TVM is also able to run the files .ncp (it's own standard files for TVM).
 > It can also accept the-m flag then, among other things, the contents of the ncp file will be displayed.
 
 ## For more information about TVM, read the documentation in the TVM/docs/en or rus directory
-Use build to compile the 
+To compile the source, use the following command gcc.
+To compile the nom compiler:
+> gcc nom.c -o nom.exe -O6
 
-> build.exe
-
-or otherwise, if the application does not fit your platform, use a different method:
-
-> gcc nom.c -o nom.exe gcc ncprun.c -o run.exe
+To compile the startup program .ncp files using TVM:
+>gcc ncprun.c -o run.exe -O6
 
 ## I need help! 
 If you are not difficult then you could help in editing the documentation in English, or help in finding problems and bugs, I will be immensely grateful to you!
