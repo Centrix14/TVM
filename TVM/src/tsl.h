@@ -72,7 +72,6 @@ enum flags { /* Список флагов / List of flags */
 	VWR, /* Value Without Register */
 	ALL, /* Флаг для _CLEAR / The _CLEAR flag for */
 	ACC, /* Флаг для вывода значения аккумулятора как числа */
-	CACC, /* Флаг для вывода значения аккумулятора как символа */
 	STACK
 };
 
