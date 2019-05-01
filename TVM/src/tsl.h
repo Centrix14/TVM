@@ -5,9 +5,9 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.5.2
+tsl.h v0.5.3
 TVM resource library
-27.04.2019
+1.05.2019
 by Centrix
 */
 

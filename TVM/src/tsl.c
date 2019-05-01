@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.5.2
+TvmStandartLib v0.5.3
 Basic TVM library
-27.04.2019
+1.05.2019
 by Centrix
 */
 
@@ -231,7 +231,7 @@ void memInter() {
 			break;
 		}
 		case DEB: {
-			printf("%d\n", cell);
+			printf("%d\n** TVM resources used:\n\tMemory cell: %d\n\tAmount of memory: %d bytes\n", cell, cell, cell*sizeof(unsigned int));
 			break;
 		}
 		case RESTART: {
