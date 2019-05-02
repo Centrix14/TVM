@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.5.3
+TvmStandartLib v0.5.4
 Basic TVM library
-1.05.2019
+2.05.2019
 by Centrix
 */
 
@@ -175,6 +175,12 @@ void memInter() {
 				}
 				case LEZ: {
 					if (value <= nil) {
+						JMP_PROC
+					}
+					break;
+				}
+				case NEZ: {
+					if (value != nil) {
 						JMP_PROC
 					}
 					break;

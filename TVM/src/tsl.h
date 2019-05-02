@@ -5,9 +5,9 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.5.3
+tsl.h v0.5.4
 TVM resource library
-1.05.2019
+2.05.2019
 by Centrix
 */
 
@@ -81,14 +81,15 @@ enum ops {
 	EZ, /* ... = 0 */
 	LZ, /* ... < 0 */
 	LEZ, /* ... <= 0 */
+	NEZ, /* ... != 0 */
 	INF /* goto */
 };
 
-char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "com", "put", ".restart", ".quit", ".clear",\
+char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "put", ".restart", ".quit", ".clear",\
 "add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
-"_cwr", "_vwr", "_all", "_acc", "_num", "_sym", "_stack", ">", ">=", "=", "<", "<=", "~"};
-int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, COM, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
+"_cwr", "_vwr", "_all", "_acc", "_num", "_sym", "_stack", ">", ">=", "=", "<", "<=", "~", "!="};
+int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
 INPUT, ACCMULT, ACCDIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, NUM, SYM, STACK, GZ, GEZ, EZ, LZ,\
-LEZ, INF};
+LEZ, INF, NEZ};
 
 #endif
