@@ -3,7 +3,7 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.5.4
+TvmStandartLib v0.6
 Basic TVM library
 2.05.2019
 by Centrix
@@ -258,46 +258,102 @@ void memInter() {
 			}
 			break;
 		}
-		case ACCADD: {
+		case ADD: {
+			int tmp1, tmp2;
+			int* addr;
+			int value;
+
 			switch (memory[cell + 1]) {
-				case STDI: {
-					acc++;
+				case ACC: {
+					addr = &acc;
 					break;
 				}
-				case STDA: {
-					int tmp1, tmp2;
-					detcoorv(memory[cell + 2], &tmp1, &tmp2);
-					acc += reg[tmp1][tmp2];
-					cell += 2;
+				case STACK: {
+					addr = &stack[STACKSIZE-busyNum+1];
 					break;
 				}
-				case VWR: {
-					acc += memory[cell + 2];
-					cell += 2;
+				default: {
+					detcoorv(memory[cell + 1], &tmp1, &tmp2);
+					addr = &reg[tmp1][tmp2];
 					break;
 				}
 			}
+
+			switch (memory[cell + 2]) {
+				case STDA: {
+					switch (memory[cell + 3]) {
+						case ACC: {
+							value = acc;
+							break;
+						}
+						case STACK: {
+							value = stack[STACKSIZE-busyNum+1];
+							break;
+						}
+						default: {
+							detcoorv(memory[cell + 3], &tmp1, &tmp2);
+							value = reg[tmp1][tmp2];
+							break;
+						}
+					}
+					break;
+				}
+				case VWR: {
+					value = memory[cell + 3];
+					break;
+				}
+			}
+			*addr += value;
+			cell += 3;
 			break;
 		}
-		case ACCSUBT: {
+		case SUBT: {
+			int tmp1, tmp2;
+			int* addr;
+			int value;
+
 			switch (memory[cell + 1]) {
-				case STDI: {
-					acc--;
+				case ACC: {
+					addr = &acc;
 					break;
 				}
-				case STDA: {
-					int tmp1, tmp2;
-					detcoorv(memory[cell + 2], &tmp1, &tmp2);
-					acc -= reg[tmp1][tmp2];
-					cell += 2;
+				case STACK: {
+					addr = &stack[STACKSIZE-busyNum+1];
 					break;
 				}
-				case VWR: {
-					acc -= memory[cell + 2];
-					cell += 2;
+				default: {
+					detcoorv(memory[cell + 1], &tmp1, &tmp2);
+					addr = &reg[tmp1][tmp2];
 					break;
 				}
 			}
+
+			switch (memory[cell + 2]) {
+				case STDA: {
+					switch (memory[cell + 3]) {
+						case ACC: {
+							value = acc;
+							break;
+						}
+						case STACK: {
+							value = stack[STACKSIZE-busyNum+1];
+							break;
+						}
+						default: {
+							detcoorv(memory[cell + 3], &tmp1, &tmp2);
+							value = reg[tmp1][tmp2];
+							break;
+						}
+					}
+					break;
+				}
+				case VWR: {
+					value = memory[cell + 3];
+					break;
+				}
+			}
+			*addr -= value;
+			cell += 3;
 			break;
 		}
 		case CMP: {
@@ -368,38 +424,102 @@ void memInter() {
 			cell += 2;
 			break;
 		}
-		case ACCMULT: {
+		case MULT: {
+			int tmp1, tmp2;
+			int* addr;
+			int value;
+
 			switch (memory[cell + 1]) {
-				case STDA: {
-					int tmp1, tmp2;
-					detcoorv(memory[cell + 2], &tmp1, &tmp2);
-					acc *= reg[tmp1][tmp2];
-					cell += 2;
+				case ACC: {
+					addr = &acc;
 					break;
 				}
-				case VWR: {
-					acc *= memory[cell + 2];
-					cell += 2;
+				case STACK: {
+					addr = &stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				default: {
+					detcoorv(memory[cell + 1], &tmp1, &tmp2);
+					addr = &reg[tmp1][tmp2];
 					break;
 				}
 			}
+
+			switch (memory[cell + 2]) {
+				case STDA: {
+					switch (memory[cell + 3]) {
+						case ACC: {
+							value = acc;
+							break;
+						}
+						case STACK: {
+							value = stack[STACKSIZE-busyNum+1];
+							break;
+						}
+						default: {
+							detcoorv(memory[cell + 3], &tmp1, &tmp2);
+							value = reg[tmp1][tmp2];
+							break;
+						}
+					}
+					break;
+				}
+				case VWR: {
+					value = memory[cell + 3];
+					break;
+				}
+			}
+			*addr *= value;
+			cell += 3;
 			break;
 		}
-		case ACCDIV: {
+		case DIV: {
+			int tmp1, tmp2;
+			int* addr;
+			int value;
+
 			switch (memory[cell + 1]) {
-				case STDA: {
-					int tmp1, tmp2;
-					detcoorv(memory[cell + 2], &tmp1, &tmp2);
-					acc /= reg[tmp1][tmp2];
-					cell += 2;
+				case ACC: {
+					addr = &acc;
 					break;
 				}
-				case VWR: {
-					acc /= memory[cell + 2];
-					cell += 2;
+				case STACK: {
+					addr = &stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				default: {
+					detcoorv(memory[cell + 1], &tmp1, &tmp2);
+					addr = &reg[tmp1][tmp2];
 					break;
 				}
 			}
+
+			switch (memory[cell + 2]) {
+				case STDA: {
+					switch (memory[cell + 3]) {
+						case ACC: {
+							value = acc;
+							break;
+						}
+						case STACK: {
+							value = stack[STACKSIZE-busyNum+1];
+							break;
+						}
+						default: {
+							detcoorv(memory[cell + 3], &tmp1, &tmp2);
+							value = reg[tmp1][tmp2];
+							break;
+						}
+					}
+					break;
+				}
+				case VWR: {
+					value = memory[cell + 3];
+					break;
+				}
+			}
+			*addr /= value;
+			cell += 3;
 		}
 		case PUSH: {
 			stack[STACKSIZE-(busyNum++)] = memory[cell+1];

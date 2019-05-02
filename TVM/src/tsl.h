@@ -5,7 +5,7 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.5.4
+tsl.h v0.6
 TVM resource library
 2.05.2019
 by Centrix
@@ -55,13 +55,13 @@ enum commands { /* Список комманд / List of commands */
 	RESTART, /* Начало исполнения программы заново / Start of program execution again [11] */
 	QUIT, /* Завершение работы программы / The completion of the program [12] */
 	CLEAR, /* Очищение определённых ячеек памяти / Clearing specific memory locations [13] */
-	ACCADD, /* Увиличение аккумулятора [14] */
-	ACCSUBT, /* Уменьшение аккумулятора [15] */
+	ADD, /* Увиличение [14] */
+	SUBT, /* Вычитание [15] */
 	CMP, /* Сравнения значений в регистрах [16] */
 	GOBACK, /* Возвращает интерпретатор в место вызова процедуры [17] */
 	INPUT, /*  Простой ввод [18] */
-	ACCMULT, /* Умножение аккумулятора [19] */
-	ACCDIV /* Деление [20] */
+	MULT, /* Умножение [19] */
+	DIV /* Деление [20] */
 };
 
 enum flags { /* Список флагов / List of flags */
@@ -88,8 +88,8 @@ enum ops {
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "put", ".restart", ".quit", ".clear",\
 "add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
 "_cwr", "_vwr", "_all", "_acc", "_num", "_sym", "_stack", ">", ">=", "=", "<", "<=", "~", "!="};
-int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, PUT, RESTART, QUIT, CLEAR, ACCADD, ACCSUBT, CMP, GOBACK, end,\
-INPUT, ACCMULT, ACCDIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, NUM, SYM, STACK, GZ, GEZ, EZ, LZ,\
+int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, PUT, RESTART, QUIT, CLEAR, ADD, SUBT, CMP, GOBACK, end,\
+INPUT, MULT, DIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, NUM, SYM, STACK, GZ, GEZ, EZ, LZ,\
 LEZ, INF, NEZ};
 
 #endif

@@ -5,8 +5,8 @@
 #include "tsl.h"
 
 /*
-nom compiler v0.3 BETA
-26.04.2019
+nom compiler v0.4 BETA
+2.06.2019
 by Centrix
 */
 
@@ -42,7 +42,7 @@ int install(char* word) {
 
 	else {
 		if (indx == KEYERR) {
-			printf("Critical error. Unrecognized expression:\n%s\ncom = %d\tindex = %d", word, com, indx);
+			printf("Critical error. Unrecognized expression:\n%s\n", word, com, indx);
 			exit(0);
 		}
 		else {
