@@ -3,11 +3,11 @@ This program demonstrates the use of accumulator operations.
 *
 
 .main * Programs start *
-add _stdi * Increase the register value by 1 *
+add _acc _vwr 1 * Increase the register value by 1 *
 put _acc _stdi * Display the register value on the screen *
 
 put 32 _cwr * space *
 
-subt _stdi * Reduce the register value by 1 *
+subt _acc _vwr 1 * Reduce the register value by 1 *
 put _acc _stdi * Display the register value on the screen *
 .end * End of program *

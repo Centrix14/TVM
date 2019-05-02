@@ -24,6 +24,8 @@ input 16 _stdc * op *
 input 14 _stdi * num1 *
 input 15 _stdi * num2 *
 
+put 61 _cwr * Display = *
+
 cmp _acc 10 16
 .jump = _acc 1 * If op is + *
 
@@ -39,28 +41,28 @@ cmp _acc 13 16
 
 * + proc * 
 .point 1
-add _stda 14
-add _stda 15
+add _acc _stda 14
+add _acc  _stda 15
 put _acc _stdi
 .goback
 
 * - proc *
 .point 2
-add _stda 14
-subt _stda 15
+add _acc _stda 14
+subt _acc _stda 15
 put _acc _stdi
 .goback
 
 * x proc *
 .point 3
-add _stda 14
-mult _stda 15
+add _acc _stda 14
+mult _acc _stda 15
 put _acc _stdi
 .goback
 
 * / proc *
 .point 4
-add _stda 14
-div _stda 15
+add _acc _stda 14
+div _acc _stda 15
 put _acc _stdi
 .goback

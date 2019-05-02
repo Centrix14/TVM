@@ -3,7 +3,7 @@
 .main
 push 65 * Put the value 65 on the stack *
 prc _acc _stack * Copy the stack value to the battery *
-add _vwr 100 * Add to the value of the accumulator 100 *
+add _acc _vwr 100 * Add to the value of the accumulator 100 *
 put _acc _stdi * Display the value of the accumulator *
 eject * Extract the old value from the stack *
 prc _stack _acc * Copy the value from the battery to the stack *
