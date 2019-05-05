@@ -1,0 +1,20 @@
+* In this lesson, we will look at the use of the amazing flag (_vla), it allows you to use the value of the accumulator or head of the stack as the address of the register *
+
+.main
+add _acc _vwr 5
+
+.point 0
+crg _vla _acc * Refer to the register, the address of which is in the accumulator *
+prc _stdi _acc
+.jump > _acc 1
+
+put 01 _stdi
+put 02 _stdi
+put 03 _stdi
+put 04 _stdi
+put 05 _stdi
+.end
+
+.point 1
+subt _acc _vwr 1
+.jump ~ 0
