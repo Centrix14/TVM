@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.6
+TvmStandartLib v0.6.1
 Basic TVM library
-2.05.2019
+5.05.2019
 by Centrix
 */
 
@@ -74,6 +74,19 @@ void memInter() {
 					cell += 2;
 					break;
 				}
+				case VLA: {
+					switch (memory[cell + 2]) {
+						case ACC: {
+							detcoor(acc);
+							break;
+						}
+						case STACK: {
+							detcoor(stack[STACKSIZE-busyNum+1]);
+							break;
+						}
+					}
+					break;
+				}
 			}
 			break;
 		}
@@ -99,33 +112,50 @@ void memInter() {
 			break;
 		}
 		case PRC: {
+			int tmp1, tmp2;
+			int* to;
+
 			switch (memory[cell + 1]) {
 				case STDI: {
-					reg[indxX][indxY] = memory[cell + 2];
-					cell += 2;
-					break;
-				}
-				case STDA: {
-					int r1x, r1y, r2x, r2y;
-					detcoorv(memory[cell + 2], &r1x, &r1y);
-					detcoorv(memory[cell + 3], &r2x, &r2y);
-					reg[r2x][r2y] = reg[r1x][r1y];
-					cell += 3;
+					to = &reg[indxX][indxY];
 					break;
 				}
 				case ACC: {
-					if (memory[cell + 2] == STACK) {
-						acc = stack[STACKSIZE-busyNum+1];
-					}
+					to = &acc;
 					break;
 				}
 				case STACK: {
-					if (memory[cell + 2] == ACC) {
-						stack[STACKSIZE-busyNum+1] = acc;
-					} 
+					to = &stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				default: {
+					detcoorv(memory[cell + 1], &tmp1, &tmp2);
+					to = &reg[tmp1][tmp2];
 					break;
 				}
 			}
+
+			switch (memory[cell + 2]) {
+				case ACC: {
+					*to = acc;
+					break;
+				}
+				case STACK: {
+					*to = stack[STACKSIZE-busyNum+1];
+					break;
+				}
+				default: {
+					if (memory[cell + 1] == STDI) {
+						*to = memory[cell + 2];
+					} 
+					else {
+						detcoorv(memory[cell + 2], &tmp1, &tmp2);
+						*to = reg[tmp1][tmp2];
+					}
+					break;
+				}
+			}
+			cell += 2;
 			break;
 		}
 		case GJP: {
@@ -230,6 +260,11 @@ void memInter() {
 				}
 				case VWR: {
 					printf("%d", memory[cell + 1]);
+					break;
+				}
+				case VLA: {
+					detcoorv(value, &tmp1, &tmp2);
+					printf("%d", reg[tmp1][tmp2]);
 					break;
 				}
 			}

@@ -5,9 +5,9 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.6
+tsl.h v0.6.1
 TVM resource library
-2.05.2019
+5.05.2019
 by Centrix
 */
 
@@ -26,7 +26,7 @@ unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
 int acc; /* Аккумулятор / Accumularor */
-int kwcount = 42; /* Number of keywords and flags */
+int kwcount = 43; /* Number of keywords and flags */
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -72,7 +72,8 @@ enum flags { /* Список флагов / List of flags */
 	VWR, /* Value Without Register */
 	ALL, /* Флаг для _CLEAR / The _CLEAR flag for */
 	ACC, /* Флаг для вывода значения аккумулятора как числа */
-	STACK
+	STACK,
+	VLA
 };
 
 enum ops {
@@ -87,9 +88,9 @@ enum ops {
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "put", ".restart", ".quit", ".clear",\
 "add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
-"_cwr", "_vwr", "_all", "_acc", "_num", "_sym", "_stack", ">", ">=", "=", "<", "<=", "~", "!="};
+"_cwr", "_vwr", "_all", "_acc", "_num", "_sym", "_stack", "_vla", ">", ">=", "=", "<", "<=", "~", "!="};
 int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, PUT, RESTART, QUIT, CLEAR, ADD, SUBT, CMP, GOBACK, end,\
-INPUT, MULT, DIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, NUM, SYM, STACK, GZ, GEZ, EZ, LZ,\
+INPUT, MULT, DIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, NUM, SYM, STACK, VLA, GZ, GEZ, EZ, LZ,\
 LEZ, INF, NEZ};
 
 #endif
