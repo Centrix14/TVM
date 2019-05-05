@@ -1,0 +1,11 @@
+.main
+add _acc _vwr 5
+
+.point 2
+.jump > _acc 1
+.end
+
+.point 1
+put _acc _stdi
+subt _acc _vwr 1
+.jump ~ 2
