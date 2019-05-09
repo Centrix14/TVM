@@ -3,9 +3,9 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.6.1
+TvmStandartLib v0.6.2
 Basic TVM library
-5.05.2019
+9.05.2019
 by Centrix
 */
 
@@ -87,6 +87,10 @@ void memInter() {
 					}
 					break;
 				}
+				default: {
+					printf("Critical error: Unknown flag passed to CRG command\n");
+					break;
+				}
 			}
 			break;
 		}
@@ -94,6 +98,10 @@ void memInter() {
 			if (memory[cell + 1] == STDI) {
 				indxY = memory[cell + 2];
 				cell += 2;
+			}
+			default: {
+				printf("Critical error: Unknown flag passed to CRC command\n");
+				break;
 			}
 			break;
 		}
@@ -106,6 +114,10 @@ void memInter() {
 				}
 				case STDA: {
 					reg[indxX][indxY] = memory[cell + 2];
+					break;
+				}
+				default: {
+					printf("Critical error: Unknown flag passed to PRG command\n");
 					break;
 				}
 			}
@@ -221,6 +233,10 @@ void memInter() {
 					--cell;
 					break;
 				}
+				default: {
+					printf("Critical error: Unknown flag passed to GJP command\n");
+					break;
+				}
 				cell--;
 			}
 			break;
@@ -265,6 +281,10 @@ void memInter() {
 				case VLA: {
 					detcoorv(value, &tmp1, &tmp2);
 					printf("%d", reg[tmp1][tmp2]);
+					break;
+				}
+				default: {
+					printf("Critical error: Unknown flag passed to PUT command\n");
 					break;
 				}
 			}
@@ -337,6 +357,10 @@ void memInter() {
 					value = memory[cell + 3];
 					break;
 				}
+				default: {
+					printf("Critical error: Unknown flag passed to ADD command\n");
+					break;
+				}
 			}
 			*addr += value;
 			cell += 3;
@@ -384,6 +408,10 @@ void memInter() {
 				}
 				case VWR: {
 					value = memory[cell + 3];
+					break;
+				}
+				default: {
+					printf("Critical error: Unknown flag passed to SUBT command\n");
 					break;
 				}
 			}
@@ -503,6 +531,10 @@ void memInter() {
 					value = memory[cell + 3];
 					break;
 				}
+				default: {
+					printf("Critical error: Unknown flag passed to MULT command\n");
+					break;
+				}
 			}
 			*addr *= value;
 			cell += 3;
@@ -552,6 +584,10 @@ void memInter() {
 					value = memory[cell + 3];
 					break;
 				}
+				default: {
+					printf("Critical error: Unknown flag passed to DIV command\n");
+					break;
+				}
 			}
 			*addr /= value;
 			cell += 3;
@@ -582,6 +618,10 @@ void memInter() {
 				}
 				case SYM: {
 					printf("%c", stack[STACKSIZE-(busyNum-1)]);
+					break;
+				}
+				default: {
+					printf("Critical error: Unknown flag passed to OUTPUT command\n");
 					break;
 				}
 			}
