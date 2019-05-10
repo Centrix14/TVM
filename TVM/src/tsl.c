@@ -3,13 +3,13 @@
 #include "stackLib.h"
 
 /*
-TvmStandartLib v0.6.2
+TvmStandartLib v0.6.3
 Basic TVM library
-9.05.2019
+10.05.2019
 by Centrix
 */
 
-#define JMP_PROC {cellOld = cell;} {cell = jump(memory[cell + 3]);} {--cell;}
+#define JMP_PROC {cellOld = cell;} {cell = jump(mark);} {--cell;}
 
 /*
 Rus: Инкрементирование производится потому что если процедура располагается в 0 ячейке то не происходил переход к .main
@@ -87,10 +87,6 @@ void memInter() {
 					}
 					break;
 				}
-				default: {
-					printf("Critical error: Unknown flag passed to CRG command\n");
-					break;
-				}
 			}
 			break;
 		}
@@ -98,10 +94,6 @@ void memInter() {
 			if (memory[cell + 1] == STDI) {
 				indxY = memory[cell + 2];
 				cell += 2;
-			}
-			default: {
-				printf("Critical error: Unknown flag passed to CRC command\n");
-				break;
 			}
 			break;
 		}
@@ -114,10 +106,6 @@ void memInter() {
 				}
 				case STDA: {
 					reg[indxX][indxY] = memory[cell + 2];
-					break;
-				}
-				default: {
-					printf("Critical error: Unknown flag passed to PRG command\n");
 					break;
 				}
 			}
@@ -138,11 +126,6 @@ void memInter() {
 				}
 				case STACK: {
 					to = &stack[STACKSIZE-busyNum+1];
-					break;
-				}
-				default: {
-					detcoorv(memory[cell + 1], &tmp1, &tmp2);
-					to = &reg[tmp1][tmp2];
 					break;
 				}
 			}
@@ -172,6 +155,7 @@ void memInter() {
 		}
 		case GJP: {
 			int value = 0;
+			int mark = 0;
 
 			switch (memory[cell + 2]) {
 				case STACK: {
@@ -186,6 +170,17 @@ void memInter() {
 					int x, y;
 					detcoorv(memory[cell + 2], &x, &y);
 					value = reg[x][y];
+					break;
+				}
+			}
+
+			switch (memory[cell + 3]) {
+				case VLA: {
+					mark = acc;
+					break;
+				}
+				default: {
+					mark = memory[cell + 3];
 					break;
 				}
 			}
@@ -233,10 +228,6 @@ void memInter() {
 					--cell;
 					break;
 				}
-				default: {
-					printf("Critical error: Unknown flag passed to GJP command\n");
-					break;
-				}
 				cell--;
 			}
 			break;
@@ -251,7 +242,7 @@ void memInter() {
 					break;
 				}
 				case STACK: {
-					value = stack[STACKSIZE-busyNum+1];
+					value = stack[STACKSIZE-(busyNum-1)];
 					break;
 				}
 				default: {
@@ -281,10 +272,6 @@ void memInter() {
 				case VLA: {
 					detcoorv(value, &tmp1, &tmp2);
 					printf("%d", reg[tmp1][tmp2]);
-					break;
-				}
-				default: {
-					printf("Critical error: Unknown flag passed to PUT command\n");
 					break;
 				}
 			}
@@ -357,10 +344,6 @@ void memInter() {
 					value = memory[cell + 3];
 					break;
 				}
-				default: {
-					printf("Critical error: Unknown flag passed to ADD command\n");
-					break;
-				}
 			}
 			*addr += value;
 			cell += 3;
@@ -408,10 +391,6 @@ void memInter() {
 				}
 				case VWR: {
 					value = memory[cell + 3];
-					break;
-				}
-				default: {
-					printf("Critical error: Unknown flag passed to SUBT command\n");
 					break;
 				}
 			}
@@ -531,10 +510,6 @@ void memInter() {
 					value = memory[cell + 3];
 					break;
 				}
-				default: {
-					printf("Critical error: Unknown flag passed to MULT command\n");
-					break;
-				}
 			}
 			*addr *= value;
 			cell += 3;
@@ -584,10 +559,6 @@ void memInter() {
 					value = memory[cell + 3];
 					break;
 				}
-				default: {
-					printf("Critical error: Unknown flag passed to DIV command\n");
-					break;
-				}
 			}
 			*addr /= value;
 			cell += 3;
@@ -597,34 +568,7 @@ void memInter() {
 			break;
 		}
 		case EJECT: {
-			stack[STACKSIZE-busyNum] = nil;
-			busyNum--;
-			break;
-		}
-		case SUM: {
-			int sum = 0;
-			for (int i = 0; i < STACKSIZE; i++) {
-				sum += stack[STACKSIZE-i];
-				stack[STACKSIZE-i] = nil;
-			}
-			stack[STACKSIZE] = sum;
-			break;
-		}
-		case OUTPUT: {
-			switch (memory[cell+1]) {
-				case NUM: {
-					printf("%d", stack[STACKSIZE-(busyNum-1)]);
-					break;
-				}
-				case SYM: {
-					printf("%c", stack[STACKSIZE-(busyNum-1)]);
-					break;
-				}
-				default: {
-					printf("Critical error: Unknown flag passed to OUTPUT command\n");
-					break;
-				}
-			}
+			stack[STACKSIZE-busyNum] = nil; busyNum--;
 			break;
 		}
 		}

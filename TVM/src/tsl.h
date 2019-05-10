@@ -5,9 +5,9 @@
 #include "stackLib.h"
 
 /*
-tsl.h v0.6.2
+tsl.h v0.6.3
 TVM resource library
-9.05.2019
+10.05.2019
 by Centrix
 */
 
@@ -26,7 +26,7 @@ unsigned int reg[8][8]; /* Регистры / Registers */
 unsigned int indxX; /* Строка / Row */
 unsigned int indxY; /* Столбец / Column */
 int acc; /* Аккумулятор / Accumularor */
-int kwcount = 43; /* Number of keywords and flags */
+int kwcount = 39; /* Number of keywords and flags */
 char filename[100]; /* Имя файла для записи */
 FILE* code; /* Поток файла для записи */
 
@@ -87,10 +87,10 @@ enum ops {
 };
 
 char* keys[] = {"nil", "crg", "crc", "prg", "prc", ".jump", ".point", ".deb", ".main", "put", ".restart", ".quit", ".clear",\
-"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", "push", "eject", "sum", "write", "_stdi", "_stda", "_stdc",\
-"_cwr", "_vwr", "_all", "_acc", "_num", "_sym", "_stack", "_vla", ">", ">=", "=", "<", "<=", "~", "!="};
+"add", "subt", "cmp", ".goback", ".end", "input", "mult", "div", "push", "eject", "_stdi", "_stda", "_stdc",\
+"_cwr", "_vwr", "_all", "_acc", "_stack", "_vla", ">", ">=", "=", "<", "<=", "~", "!="};
 int values[] = {nil, CRG, CRC, PRG, PRC, GJP, JPT, DEB, MAIN, PUT, RESTART, QUIT, CLEAR, ADD, SUBT, CMP, GOBACK, end,\
-INPUT, MULT, DIV, PUSH, EJECT, SUM, OUTPUT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, NUM, SYM, STACK, VLA, GZ, GEZ, EZ, LZ,\
+INPUT, MULT, DIV, PUSH, EJECT, STDI, STDA, STDC, CWR, VWR, ALL, ACC, STACK, VLA, GZ, GEZ, EZ, LZ,\
 LEZ, INF, NEZ};
 
 #endif

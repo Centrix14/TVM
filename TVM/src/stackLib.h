@@ -2,9 +2,9 @@
 #define STACKLIB_H_INCLUDED
 
 /* 
-stackLib.h v0.5.1
+stackLib.h v0.6
 Library for working with stack
-26.04.2019
+10.05.2019
 by Centrix
 */
 
@@ -19,15 +19,7 @@ int memCount = 0;
 
 enum moves { /* Stack commands */
 	PUSH = 200,
-	EJECT,
-	SUM,
-	OUTPUT
-};
-
-enum params { /* The parameters applicable to the command stack */
-	NUM = 300,
-	ADDR,
-	SYM
+	EJECT
 };
 
 #endif
