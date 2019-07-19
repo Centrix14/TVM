@@ -17,7 +17,4 @@ To compile the nom compiler:
 > gcc nom.c -o nom.exe -O6
 
 To compile the startup program .ncp files using TVM:
->gcc ncprun.c -o run.exe -O6
-
-## I need help! 
-If you are not difficult then you could help in editing the documentation in English, or help in finding problems and bugs, I will be immensely grateful to you!
+> gcc ncprun.c -o run.exe -O6
